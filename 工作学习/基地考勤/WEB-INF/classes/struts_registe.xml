@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+    "http://struts.apache.org/dtds/struts-2.1.dtd">
+
+<struts>
+	<constant name="struts.i18n.encoding" value="utf-8" />
+	<constant name="struts.devMode" value="true"></constant>
+
+	<!-- <package name="example" namespace="/" extends="json-default"> -->
+	<!-- <action name="login" class="org.ypx.action.login"> -->
+	<!-- <result type="json"> -->
+	<!-- <param name="noCache">true</param> -->
+	<!-- <param name="contentType">text/html</param> -->
+	<!-- </result> -->
+	<!-- </action> -->
+
+	<package name="register" namespace="/" extends="struts-default">
+		<action name="registe" method="registe" class="org.ypx.action.RegisterAction">
+			<result name="success">/main.jsp</result>
+			<result name="error">/Login.jsp</result>
+		</action>
+
+		<action name="registerList" method="registerList"
+			class="org.ypx.action.RegisterAction">
+			
+		</action>
+
+		<!-- <action name="*"> -->
+		<!-- <result>{1}.jsp</result> -->
+		<!-- </action> -->
+
+
+		<!-- <action name="LogonUser" class="com.yld.ypx_PersonManager.action.UsersAction"> -->
+		<!-- <result name="success">/staff_success.jsp</result> -->
+		<!-- <result name="login">/dm_success.jsp</result> -->
+		<!-- <result name="error">/ceo_success.jsp</result> -->
+		<!-- <result name="input">/Login.jsp</result> -->
+		<!-- </action> -->
+		<!-- <action name="*UserAction" class="com.yld.ypx_PersonManager.action.UsersAction" -->
+		<!-- method="{1}User"> -->
+		<!-- <result name="success">/Login.jsp</result> -->
+		<!-- <result name="input">/{1}User.jsp</result> -->
+		<!-- </action> -->
+		<!-- <action name="*TurnAction" class="com.yld.action.TurnAction" -->
+		<!-- method="turn"> -->
+		<!-- <result name="success">/{1}User.jsp</result> -->
+		<!-- </action> -->
+		<!-- <action name="index" class="com.yld.action.TurnAction" method="turn"> -->
+		<!-- <result name="success">/Login.jsp</result> -->
+		<!-- </action> -->
+
+		<!-- <action name="*_*_staff" class="com.yld.action.TurnAction" -->
+		<!-- method="turn"> -->
+		<!-- <result name="success">{1}_{2}_staff.jsp</result> -->
+		<!-- <result name ="input">/Login.jsp</result> -->
+		<!-- </action> -->
+
+		<!-- <action name="update_*_info" class="com.yld.action.TurnAction" -->
+		<!-- method="turn"> -->
+		<!-- <result name="success">/update_{1}_info.jsp</result> -->
+		<!-- <result name ="input">/Login.jsp</result> -->
+		<!-- </action> -->
+	</package>
+</struts>

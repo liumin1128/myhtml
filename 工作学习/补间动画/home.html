@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+	.container div{
+		width: 200px;
+		height: 200px;
+		background-color: red;
+		color:#fff;
+		font-size: 200px;
+		text-align: center;
+		line-height: 200px;
+		margin: auto;
+		-webkit-transition: 1s;
+		   -moz-transition: 1s;
+		    -ms-transition: 1s;
+		     -o-transition: 1s;
+		        transition: 1s;
+	}
+	#next{
+	position: relative;
+	margin: 50px auto;
+	width: 100px;
+	height: 35px;
+	color: #fff;
+	text-align: center;
+	line-height: 35px;
+	border-radius: 35px;
+	z-index: 10;
+}
+#next:after{
+	position: absolute;
+	width: 100px;
+	height: 35px;
+	content: "";
+	background: #000;
+	left: 1px;
+	bottom: -2px;
+	z-index: -2;
+	border-radius: 35px;
+
+}
+#next:before{
+	position: absolute;
+	width: 100px;
+	height: 35px;
+	content: "";
+	background: #393550;
+	
+	z-index: -1;
+	border-radius: 35px;
+
+}
+#next:hover:before{
+	background: #395660;
+}
+#next:active:before{
+	background: #415660;
+	left: 1px;
+	bottom: -2px;
+
+}
+</style>
+<body>
+	<div class="container">
+		<div id="ball0">0</div>
+		<!-- <div id="ball1">1</div>
+		<div id="ball2">2</div>
+		<div id="ball3">3</div>
+		<div id="ball4">4</div> -->
+	</div>
+		<div id="next" onclick="next()">NEXT</div>
+
+	<script>
+	var cur = 0;
+	function next(){
+		ballCtrl();
+	}
+	function ballCtrl(){
+		var ball = document.getElementById("ball"+cur);
+		ball.style.transform = "rotate(180deg) translate(200px)";
+	}
+	</script>
+</body> 
+</html>

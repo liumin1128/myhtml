@@ -1,0 +1,123 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+#div1{
+	background:url(bg1.jpg) repeat-x;
+	width:500px;
+	height:1000px;
+}
+#div2{
+	background:url(bg2.jpg) repeat-x;
+	width:500px;
+	height:1000px;
+}
+#div3{
+	background:url(bg3.jpg) repeat-x;
+	width:500px;
+	height:1000px;
+}
+#div4{
+	background:url(bg4.jpg) repeat-x;
+	width:500px;
+	height:1000px;
+}
+#div5{
+	background:url(bg5.jpg) repeat-x;
+	width:500px;
+	height:1000px;
+}
+#card{
+	width:500px;
+	height:1000px;
+	background:#000;
+}
+#tit{
+	width:500px;
+	height:50px;
+	background:url(tit.png);
+	float:left;
+}
+#tit h3{
+	margin:0;
+	padding:0;
+	width:90px;
+	height:40px;
+	background:#999;
+	color:#FFF;
+	border:#FFF 5px solid;
+	text-align:center;
+	line-height:40px;
+	float:left;
+	}
+#tit .titin{
+	background:none;
+	width:100px;
+	height:50px;
+	border:0px;
+	line-height:50px;
+	}
+#content div{
+	display:none;
+}
+#content .in{
+	display:block;
+}
+</style>
+</head>
+
+<body>
+<div id="card">
+	<div id="tit">
+    <h3 onMouseOver="show(0)" class="titin">选项一</h3> 
+    <h3 onMouseOver="show(1)">选项二</h3>
+    <h3 onMouseOver="show(2)">选项三</h3>
+    <h3 onMouseOver="show(3)">选项四</h3>
+    <h3 onMouseOver="show(4)">选项五</h3>
+    </div>
+    <div id="content">
+            <div id="div1" class="in">
+            </div>
+            <div id="div2">
+            </div>
+            <div id="div3">
+            </div>
+            <div id="div4">
+            </div>
+            <div id="div5">
+            </div>
+     </div>
+</div>
+</body>
+<script>
+	var h3os=document.getElementsByTagName("h3");
+	var cdivs=document.getElementById("content").getElementsByTagName("div");
+	function show(num){
+		for(var i=0;i<h3os.length;i++){
+			if(i==num){
+				h3os[num].className="titin";
+				cdivs[num].style.display="blcok";
+			}
+			else{
+				h3os[i].className="";
+				cdivs[i].style.display="none";
+			}
+		
+		}
+		
+		
+		for(var i=0;i<h3os.length;i++){
+			if(i==num){
+				h3os[num].className="titin"
+				cdivs[num].style.display="block";
+			}
+			else{
+				h3os[i].className="";
+				cdivs[i].style.display="none";
+			}
+		}
+	}
+</script>
+</html>

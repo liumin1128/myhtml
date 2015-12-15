@@ -1,0 +1,7 @@
+< ?php 
+¡¡¡¡ if (ereg(¡°^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(\.[a-zA-Z0-9_-])+¡±,$email)){ 
+              echo ¡°Your email address is correct!¡±;} 
+¡¡¡¡ else{ 
+              echo ¡°Please try again!¡±; 
+      } 
+?>//ÓÊ¼þ¸ñÊ½¼ìË÷

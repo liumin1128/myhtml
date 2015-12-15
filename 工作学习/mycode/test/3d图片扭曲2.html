@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+
+
+*{
+	margin: 0;
+	padding: 0;
+}
+#sourceNode{
+	display: none;
+}
+#body{
+	width: 1000px;
+	height: 500px;
+	background: rgba(0,0,0,0.5);
+	perspective:1000;
+			-webkit-perspective:800;
+		-webkit-transform-style:preserve-3d;
+       	-moz-transform-style:preserve-3d;
+         -o-transform-style:preserve-3d;
+            transform-style:preserve-3d;
+            transform-style:preserve-3d;
+}
+	.container{
+
+		-webkit-transform-style:preserve-3d;
+       	-moz-transform-style:preserve-3d;
+         -o-transform-style:preserve-3d;
+            transform-style:preserve-3d;
+            transform-style:preserve-3d;
+		width: 150px;
+		height: 150px;
+		margin: 0 auto 0 auto;
+		border:1px #999 solid;
+		position: relative;
+		/*overflow: hidden;*/
+		-webkit-transition:30s;
+       -moz-transition:30s;
+         -o-transition:30s;
+            transition:30s;
+            -webkit-transition-timing-function: linear;
+               -moz-transition-timing-function: linear;
+                -ms-transition-timing-function: linear;
+                 -o-transition-timing-function: linear;
+                    transition-timing-function: linear;
+
+		
+	}
+	.newpic{
+		
+		-webkit-transform-style:preserve-3d;
+       	-moz-transform-style:preserve-3d;
+         -o-transform-style:preserve-3d;
+            transform-style:preserve-3d;
+            transform-style:preserve-3d;
+		width: 1000px;
+		height: 600px;
+		position: absolute;
+		
+	}
+
+</style>
+<body>
+	<ul >
+		<li ><img id="sourceNode"  src="image/test.jpg" alt=""></li>
+	</ul>
+		
+	<div id="body">
+		<div class="container" id="container"></div>
+	</div>
+		
+
+	
+	<script>
+
+
+	window.onload = pic3d(36,1000,600);
+	function pic3d(n,width,height){
+		var sourceNode = document.getElementById("sourceNode");
+		var container = document.getElementById("container");
+		for(i=0;i<n;i++){
+		var newpic = document.createElement("div");
+		newpic.setAttribute("class","newpic");
+		newpic.style.width = width/n+"px";
+		// newpic.style.left = i*width/n+"px";
+		newpic.style.background = "url("+sourceNode.src+")";
+		newpic.style.backgroundSize = width+"px"+" "+height+"px";
+		newpic.style.backgroundPosition = -i*(width/n)+"px 0px";
+		newpic.style.transform = "rotateY("+i*360/n+"deg) translateZ("+0.95*width/(Math.PI*2)+"px)";
+		container.appendChild(newpic);
+		}
+		
+	}
+
+	</script>
+	<input type="range"  min="-360" max="360" value="0" id="rotatex" onchange="rotate();">
+	<input type="range"  min="-360" max="360" value="0" id="rotatey" onchange="rotate();">
+	<input type="range"  min="-360" max="360" value="0" id="rotatez" onchange="rotate();">
+	<script>
+	var rotatex = document.getElementById("rotatex");
+	var rotatey = document.getElementById("rotatey");
+	var rotatez = document.getElementById("rotatez");
+	function rotate(){
+		document.getElementById("container").style.transform = "rotateX("+rotatex.value+"deg) rotateY("+rotatey.value+"deg) rotateZ("+rotatez.value+"deg)";
+	}
+	</script>
+
+</body>
+</html>

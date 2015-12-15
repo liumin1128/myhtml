@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+	*{
+	margin: 0;
+	padding: 0;
+	border: 0;
+	}
+	.container{
+		width: 800px;
+		margin: 0 auto;
+	}
+	#stars{
+		-webkit-transition: 1s linear;
+		   -moz-transition: 1s linear;
+		    -ms-transition: 1s linear;
+		     -o-transition: 1s linear;
+		        transition: 1s linear;
+		width: 100%;
+		position: relative;
+		height: 500px;
+		perspective: 500px;
+		-webkit-perspective: 500;
+		perspective-origin: 50% 50%;
+		-webkit-perspective-origin: 50% 50%;
+		overflow: hidden;
+		background-image: url("img/01.gif");
+		trans
+	}
+	#next{
+	position: relative;
+	margin: 50px auto;
+	width: 100px;
+	height: 35px;
+	color: #fff;
+	text-align: center;
+	line-height: 35px;
+	border-radius: 35px;
+	z-index: 10;
+}
+#next:after{
+	position: absolute;
+	width: 100px;
+	height: 35px;
+	content: "";
+	background: #000;
+	left: 1px;
+	bottom: -2px;
+	z-index: -2;
+	border-radius: 35px;
+
+}
+#next:before{
+	position: absolute;
+	width: 100px;
+	height: 35px;
+	content: "";
+	background: #393550;
+	
+	z-index: -1;
+	border-radius: 35px;
+
+}
+#next:hover:before{
+	background: #395660;
+}
+#next:active:before{
+	background: #415660;
+	left: 1px;
+	bottom: -2px;
+
+}
+</style>
+<body>
+	<div class="container">
+		<div id="stars"></div>
+	</div>
+	<div id="next" onclick="next()">NEXT</div>
+	<script>
+
+	var stars = document.getElementById("stars");
+	var num = 0;
+	window.onload = loop();
+	function next(){
+		num+=1;
+		stars.style.backgroundPosition = num*800+"px 0px";
+	}
+	function loop(){
+		window.setTimeout(loop,1000);
+
+		next();
+	}
+	</script>
+</body>
+</html>

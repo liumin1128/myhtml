@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="css/init.css">
+	<link rel="stylesheet" type="text/css" href="css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+	<div class="body">
+		<div class="demo" onMouseOver="run=window.clearInterval(run)" onMouseOut="run=window.setInterval(runpic,3000)">
+			<ul class="image" id="demo" >
+				<li><img src="image/1.jpg"></li>
+				<li><img src="image/2.jpg"></li>
+				<li><img src="image/3.jpg"></li>
+				<li><img src="image/4.jpg"></li>
+				<li><img src="image/5.jpg"></li>
+				<li><img src="image/6.jpg"></li>
+				<li><img src="image/7.jpg"></li>
+				<li><img src="image/8.jpg"></li>
+			</ul>
+		</div>
+		<div class="crtl" onMouseOver="run=window.clearInterval(run)" onMouseOut="run=window.setInterval(runpic,3000)">
+			<ul>
+				<li onMouseOver="turn(1)">1</li>
+				<li onMouseOver="turn(2)">2</li>
+				<li onMouseOver="turn(3)">3</li>
+				<li onMouseOver="turn(4)">4</li>
+				<li onMouseOver="turn(5)">5</li>
+				<li onMouseOver="turn(6)">6</li>
+				<li onMouseOver="turn(7)">7</li>
+				<li onMouseOver="turn(8)">8</li>
+			</ul>
+		</div>
+		
+			<h1 class="trangle1" onclick="runpic2()" onMouseOver="run=window.clearInterval(run)" onMouseOut="run=window.setInterval(runpic,3000)">left</h1>
+			<h1 class="trangle2" onclick="runpic()" onMouseOver="run=window.clearInterval(run)" onMouseOut="run=window.setInterval(runpic,3000)">right</h1>
+		
+		<script type="text/javascript">
+			var run = window.setInterval(runpic,3000);
+			var demo = document.getElementById("demo");
+			demo.style.transition = "1s";
+			demo.style.left = "0%"
+			var picleft = 0;
+			// document.getElementById("demo").style.display= "none";
+			function runpic(){
+				// var picleft = demo1.offsetLeft;
+				picleft += 1;
+				picleft = picleft%8;
+				demo.style.left = "-" + picleft*100 + "%";
+			}
+			function runpic2(){
+				// var picleft = demo1.offsetLeft;
+				picleft -= 1;
+				if(picleft<0){
+					picleft = 7;
+				}
+				picleft = picleft%8;
+				demo.style.left = "-" + picleft*100 + "%";
+			}
+			function turn(n){
+				demo.style.left = "-" + (n-1)*100 + "%";
+
+			}
+		
+			
+		
+			
+			
+		</script>
+		
+</div></body>
+</html>

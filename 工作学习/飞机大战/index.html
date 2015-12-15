@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#canvas{
+			position: absolute;
+			left: 0px;
+			top:0px;
+		}
+		#canvas2{
+			position: absolute;
+			left: 0px;
+			top:0px;
+			z-index: -1;
+		}
+	</style>
+</head>
+<body>
+<audio autoplay="autoplay" loop="loop" src="src/音效/bgm_zhandou2.ogg">
+	<audio id="beiji" src="src/音效/effcet_sfx_beiji.ogg"></audio>
+</audio>
+<audio id="xiaobaozha" src="src/音效/effcet_sfx_xiaobaozha.ogg"></audio>
+</audio>
+<audio id="zhongbaozha" src="src/音效/effcet_sfx_zhongbaozha.ogg"></audio>
+</audio>
+<audio id="dabaozha" src="src/音效/effcet_sfx_dabaozha.ogg"></audio>
+</audio>
+	<canvas id="canvas"></canvas>
+	<canvas id="canvas2"></canvas>
+
+	<script src="js/bullet.js"></script>
+	<script src="js/main.js"></script>
+	<script src="js/plane.js"></script>
+	<script src="js/key.js"></script>
+	<script src="js/enemy.js"></script>
+	<script src="js/collision.js"></script>
+	<script src="js/drawBg.js"></script>
+	<script src="js/enemy2.js"></script>
+	<script src="js/enemysBullet.js"></script>
+	<script src="js/info.js"></script>
+	<script src="js/audio.js"></script>
+
+</body>
+</html>

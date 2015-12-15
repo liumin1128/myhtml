@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+	*{
+	margin: 0;
+	padding: 0;
+	border: 0;
+	}
+	.container{
+		width: 800px;
+		margin: 0 auto;
+	}
+	.pics{
+		width: 100%;
+		position: relative;
+		height: 500px;
+		overflow: hidden;
+	}
+	.pic{
+		width: 100%;
+		height: 500px;
+		position: absolute;
+		opacity:0;
+	}
+	.pic img{
+		width: 100%;
+		height: 500px;
+	}
+	.picnew{
+		position: absolute;
+		width: 100%;
+		height: 500px;
+		background-size:800px 500px;
+		background-repeat:no-repeat;
+		-webkit-transition: 1s;
+		   -moz-transition: 1s;
+		    -ms-transition: 1s;
+		     -o-transition: 1s;
+		        transition: 1s;
+	}
+	.picnew:hover{
+		-webkit-transform: rotate(30deg);
+		   -moz-transform: rotate(30deg);
+		    -ms-transform: rotate(30deg);
+		     -o-transform: rotate(30deg);
+		        transform: rotate(30deg);
+	}
+</style>
+<body>
+	<div class="container">
+		<div class="pics">
+			<div id="pic0" class="pic"><img src="img/0.jpg" alt=""></div>
+			<div id="pic1" class="pic"><img src="img/1.jpg" alt=""></div>
+			<div id="pic2" class="pic"><img src="img/2.jpg" alt=""></div>
+			<div id="pic3" class="pic"><img src="img/3.jpg" alt=""></div>
+			<div id="pic4" class="pic"><img src="img/4.jpg" alt=""></div>
+			<div id="pic5" class="pic"><img src="img/5.jpg" alt=""></div>
+			<div id="pic6" class="pic"><img src="img/6.jpg" alt=""></div>
+			<div id="pic7" class="pic"><img src="img/7.jpg" alt=""></div>
+			<div id="pic8" class="pic"><img src="img/8.jpg" alt=""></div>
+			<div id="pic9" class="pic"><img src="img/9.jpg" alt=""></div>
+		</div>
+		<div class="button">111
+			<input type="button" value="next" onclick="next()">
+		</div>
+	</div>
+	<script>
+		var cur = 0;
+		var zin = 9999;
+		var n = 5;//参数表示一个图片分成多少块
+		window.onload = init();
+		function curCheck(cur){
+			if(cur<0){
+				cur = 9;
+			}else if(cur>9){
+				cur = 0;
+			}
+			return cur;
+		}
+		function init(input){
+				creat(n,cur);
+		}
+		function creat(n,cur){
+			for(i=0;i<n*n;i++){
+				var sourceNode = document.getElementById("pic" + cur);
+				var objNode = document.createElement("div");
+				var h = sourceNode.offsetHeight/n;
+				var w = sourceNode.offsetWidth/n;
+				objNode.setAttribute("id","picnew"+cur+i);
+				objNode.setAttribute("class","picnew");
+				objNode.style.backgroundImage = "url("+sourceNode.childNodes.	item(0).src+")";
+				objNode.style.width = w + "px";
+				objNode.style.height = h + "px";
+				objNode.style.left = i%n*w +"px";
+				objNode.style.top = Math.floor(i/n)*h + "px";
+				objNode.style.backgroundPosition = -i%n*w + "px "+(-Math.floor(i/n)*h)+"px";
+				objNode.style.transitionDelay=.05*i+"s";
+				objNode.style.zIndex = zin;
+				sourceNode.parentNode.appendChild(objNode);
+			}
+			zin-=1;
+		}
+		function remove(n,cur){
+			for(i=0;i<n*n;i++){
+				var objNode = document.getElementById("picnew"+cur+i);
+				objNode.parentNode.removeChild(objNode);
+			}
+		}
+		function next(){
+			if(document.getElementById("picnew"+curCheck(cur-1)+1)){
+			remove(n,curCheck(cur-1));
+			}
+			turn(n,cur);
+			// setTimeout("remove(n,curCheck(cur-1));",1000);
+			creat(n,curCheck(cur+1));
+			cur = curCheck(cur+1);
+		}
+		function turn(n,cur){
+			var num = Math.floor(Math.random()*10);
+			// num = 8;
+			for(i=0;i<n*n;i++){
+				var objNode = document.getElementById("picnew"+cur+i);
+
+				switch(num){
+					case 1:
+						objNode.style.transform = "scale(0)";
+						 break;
+					case 2:
+						objNode.style.opacity = "0";
+						 break;
+					case 3:
+						objNode.style.transitionDelay="0s";
+						objNode.style.width = "0";
+						 break;
+					case 4:
+						objNode.style.transitionDelay="0s";
+						objNode.style.height = "0";
+						 break;
+					case 5:
+						objNode.style.transitionDelay="0s";
+						objNode.style.transform = "rotateY(90deg)";
+						break;
+					case 6:
+						objNode.style.transitionDelay="0s";
+						objNode.style.transform = "rotateX(90deg)";
+						break;
+					case 7:
+						objNode.style.transitionDelay="0s";
+						objNode.style.transition = "5s";
+						// if(Math.floor(i/n)%2) 
+						if(i%2)
+						objNode.style.left ="200%";
+						else
+						objNode.style.left ="-200%";
+						objNode.style.opacity = "0";
+						break;
+					case 8:
+						objNode.style.transitionDelay="0s";
+						objNode.style.transition = "1s";
+						// if(Math.floor(i/n)%2) 
+						if(i%2)
+						objNode.style.width ="0";
+						else
+						objNode.style.height ="0";
+						break;
+					default:
+						var num2 = Math.floor(Math.random()*10);
+						switch(num2){
+							case 1:
+								objNode.style.transform = "scale(0)";
+						 		break;
+							case 2:
+								objNode.style.opacity = "0";
+						 		break;
+							case 3:
+								objNode.style.width = "0";
+						 		break;
+							case 4:
+								objNode.style.height = "0";
+						 		break;
+						 	case 5:
+								objNode.style.transform = "rotateY(90deg)";
+								break;
+							case 6:
+								objNode.style.transform = "rotateX(90deg)";
+								break;
+						 	default:
+						 	objNode.style.opacity = "0";
+
+						}
+				}
+
+			}
+		}
+	</script>
+</body>
+</html>

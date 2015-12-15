@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+	*{
+	margin: 0;
+	padding: 0;
+	border: 0;
+	}
+	.container{
+		width: 800px;
+		margin: 0 auto;
+	}
+	.pics{
+		width: 100%;
+		position: relative;
+		height: 500px;
+		perspective: 500px;
+		-webkit-perspective: 500;
+	}
+	.pic{
+		width: 100%;
+		height: 500px;
+		position: absolute;
+		opacity:0;
+	}
+	.pic img{
+		width: 100%;
+		height: 500px;
+	}
+	.picnew{
+		perspective-origin: 50% 50%;
+		-webkit-perspective-origin: 50% 50%;
+		position: absolute;
+		width: 100%;
+		height: 500px;
+		background-size:800px 500px;
+		background-repeat:no-repeat;
+		-webkit-transition: 1s;
+		   -moz-transition: 1s;
+		    -ms-transition: 1s;
+		     -o-transition: 1s;
+		        transition: 1s;
+	}
+	.picnew:hover{
+		-webkit-transform: rotateY(30deg);
+		   -moz-transform: rotateY(30deg);
+		    -ms-transform: rotateY(30deg);
+		     -o-transform: rotateY(30deg);
+		        transform: rotateY(30deg);
+	}
+</style>
+<body>
+	<div class="container">
+		<div class="pics">
+			<div id="pic0" class="pic"><img src="img/0.jpg" alt=""></div>
+			<div id="pic1" class="pic"><img src="img/1.jpg" alt=""></div>
+			<div id="pic2" class="pic"><img src="img/2.jpg" alt=""></div>
+			<div id="pic3" class="pic"><img src="img/3.jpg" alt=""></div>
+			<div id="pic4" class="pic"><img src="img/4.jpg" alt=""></div>
+			<div id="pic5" class="pic"><img src="img/5.jpg" alt=""></div>
+			<div id="pic6" class="pic"><img src="img/6.jpg" alt=""></div>
+			<div id="pic7" class="pic"><img src="img/7.jpg" alt=""></div>
+			<div id="pic8" class="pic"><img src="img/8.jpg" alt=""></div>
+			<div id="pic9" class="pic"><img src="img/9.jpg" alt=""></div>
+		</div>
+		<div class="button" style="position:relative;z-index:99999;">111
+			<input type="button" value="next" onclick="next()">
+		</div>
+	</div>
+	<script>
+		var cur = 0;
+		var zin = 9999;
+		var n = 5;//参数表示一个图片分成多少块
+		window.onload = init();
+		function curCheck(cur){
+			if(cur<0){
+				cur = 9;
+			}else if(cur>9){
+				cur = 0;
+			}
+			return cur;
+		}
+		function init(input){
+				creat(n,cur);
+		}
+		function creat(n,cur){
+			for(i=0;i<n*n;i++){
+				var sourceNode = document.getElementById("pic" + cur);
+				var objNode = document.createElement("div");
+				var h = sourceNode.offsetHeight/n;
+				var w = sourceNode.offsetWidth/n;
+				objNode.setAttribute("id","picnew"+cur+i);
+				objNode.setAttribute("class","picnew");
+				objNode.style.backgroundImage = "url("+sourceNode.childNodes.	item(0).src+")";
+				objNode.style.width = w + "px";
+				objNode.style.height = h + "px";
+				objNode.style.left = i%n*w +"px";
+				objNode.style.top = Math.floor(i/n)*h + "px";
+				objNode.style.backgroundPosition = -i%n*w + "px "+(-Math.floor(i/n)*h)+"px";
+				objNode.style.transitionDelay=.05*i+"s";
+				objNode.style.zIndex = zin;
+				sourceNode.parentNode.appendChild(objNode);
+			}
+			zin-=1;
+		}
+		function remove(n,cur){
+			for(i=0;i<n*n;i++){
+				var objNode = document.getElementById("picnew"+cur+i);
+				objNode.parentNode.removeChild(objNode);
+			}
+		}
+		function next(){
+			if(document.getElementById("picnew"+curCheck(cur-1)+1)){
+			remove(n,curCheck(cur-1));
+			}
+			turn(n,cur);
+			// setTimeout("remove(n,curCheck(cur-1));",1000);
+			creat(n,curCheck(cur+1));
+			cur = curCheck(cur+1);
+		}
+		function turn(n,cur){
+			var num = Math.floor(Math.random()*10);
+			// num = 7;
+			for(i=0;i<n*n;i++){
+				var objNode = document.getElementById("picnew"+cur+i);
+				switch(num){
+					case 1:  //3D飘落
+						objNode.style.transformOrigin = "50% 100%";
+						objNode.style.transform = "rotateX(90deg) translateY("+(5-Math.floor(i/n))*100+"%)";
+						var num3 = Math.floor(Math.random()*10);
+						objNode.style.transitionDelay = num3*0.1+"s";
+						objNode.style.opacity = "0";
+						 break;
+					case 2: //右上角聚拢
+						var delay = Math.floor(Math.random()*10);
+						objNode.style.transitionDelay = 0+"s";
+						objNode.style.transform = "translateY("+(-2-Math.floor(i/n))*100+"%) translateX("+(5-i%n)*100+"%) rotateX(90deg) rotateY(90deg) rotateZ(90deg)";
+
+						break;
+					case 3: //向左上角浮动
+						var delay = Math.floor(Math.random()*10);
+						objNode.style.transitionDelay = delay*0.1+"s";
+						objNode.style.transform = "translateY("+(-2-Math.floor(i/n))*100+"%) translateX("+(-i%n-2)*100+"%) rotateX(90deg) rotateY(-90deg) rotateZ(-90deg)";
+						break;
+					case 4: //扑面而来
+						var delay = Math.floor(Math.random()*10);
+						objNode.style.transition = "2s";
+						objNode.style.transitionDelay = delay*0.1+"s";
+						objNode.style.transform = "translateZ(1000px)";
+						objNode.style.opacity = "0";
+						break;
+					case 5: //塌陷
+						var delay = Math.floor(Math.random()*10);
+						objNode.style.transition = "1s";
+						objNode.style.transitionDelay = delay*0.2+"s";
+						objNode.style.transform = "translateZ(-1000px)";
+						objNode.style.opacity = "0";
+						break;
+					case 6: //律动3d
+						objNode.style.transition = ".5s";
+						objNode.style.transitionDelay = i%n*0.1+"s";
+						objNode.style.transform = "translateZ(100px)";
+						objNode.style.opacity = "0";
+						break;
+					case 7: //翻滚
+						objNode.style.transition = "1s";
+						objNode.style.transitionDelay = i%n*0.2+"s";
+						objNode.style.transform = "translateZ(100px) translateX("+(5-i%n)*100+"%) rotateY(180deg)";
+						objNode.style.opacity = "0";
+						break;
+					default:
+						objNode.style.transform = "scale(0)";
+				}
+
+			}
+		}
+	</script>
+</body>
+</html>

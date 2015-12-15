@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<style>
+	*{
+		margin: 0;
+		padding: 0;
+		border:0px;
+	}
+	.container{
+		margin-left: 300px;
+		width: 500px;
+		height: 350px;
+		border:1px #000 solid;
+
+		perspective:1000px;
+			-webkit-perspective:800;
+		    -webkit-transform-style:preserve-3d;
+       -moz-transform-style:preserve-3d;
+         -o-transform-style:preserve-3d;
+            transform-style:preserve-3d;
+    -webkit-transition:-webkit-transform 1s;
+       -moz-transition:-moz-transform 1s;
+         -o-transition:-o-transform 1s;
+            transition:transform 1s;
+			transform-style:preserve-3d;
+
+ /*   -webkit-transform:translateZ( -100px );
+       -moz-transform:translateZ( -100px );
+         -o-transform:translateZ( -100px );
+            transform:translateZ( -100px );*/
+	}
+#page{
+	width: 160px;
+		height: 100%;
+		position: absolute;
+		color: #fff;
+		font-size: 500px;
+		text-align: center;
+		line-height: 500px;
+		-webkit-transition: all 1s;
+			   -moz-transition: all 1s;
+			    -ms-transition: all 1s;
+			     -o-transition: all 1s;
+			        transition: all 1s;
+			transform-style:preserve-3d;
+
+}
+	.pic{
+		width: 500px;
+		height: 350px;
+		overflow: hidden;
+		float: left;
+		background: red;
+		display: none;
+		
+			position: relative;
+	}
+	.pic img{
+		height: 350px;
+		width: 500px;
+	}
+	.img{
+		width: 100px;
+		height: 350px;
+		overflow: hidden;
+		/*float: left;*/
+		position: absolute;
+		-webkit-transition: 1s;
+		   -moz-transition: 1s;
+		    -ms-transition: 1s;
+		     -o-transition: 1s;
+		        transition: 1s;
+
+	}
+	.img:hover{
+		-webkit-transform: rotateY(90deg);
+		   -moz-transform: rotateY(90deg);
+		    -ms-transform: rotateY(90deg);
+		     -o-transform: rotateY(90deg);
+		        transform: rotateY(90deg);
+	}
+	#test:hover{
+		-webkit-transform: rotateY(50deg);
+		   -moz-transform: rotateY(50deg);
+		    -ms-transform: rotateY(50deg);
+		     -o-transform: rotateY(50deg);
+		        transform: rotateY(50deg);
+	}
+	
+</style>
+<body>
+			<div class="container">
+				<div class="page" id="page">
+					<div class="pic" id="pic"><img src="image/0.jpg" alt=""></div>
+				</div>
+				
+
+			</div>
+			
+		
+        
+        <script>
+        window.onload = clone(500);
+        function clone(n){
+        	var sourceNode = document.getElementById("pic");
+        	for(i=0;i<n;i++){
+        		var newpic = document.createElement("div");
+        		newpic.setAttribute("class","img");
+        		newpic.style.background = "url("+ sourceNode.childNodes.item(0).src+")";
+        		newpic.style.width = 500/n+"px";
+        		// newpic.style.left =i+500/n+"px";
+        		newpic.style.transform = "rotateY("+i*360/500+"deg) translateZ("+500/(Math.PI*2)+"px)";
+        		newpic.style.backgroundPosition = -500/n*i+"px 0px";
+        		sourceNode.parentNode.appendChild(newpic);
+        	}
+        	
+        }
+      
+        </script>
+    <input type="range"  min="-360" max="360" value="0" id="rotatex" onchange="rotate();">
+	<input type="range"  min="-360" max="360" value="0" id="rotatey" onchange="rotate();">
+	<input type="range"  min="-360" max="360" value="0" id="rotatez" onchange="rotate();">
+	<script>
+	var rotatex = document.getElementById("rotatex");
+	var rotatey = document.getElementById("rotatey");
+	var rotatez = document.getElementById("rotatez");
+	function rotate(){
+		document.getElementById("page").style.transform = "rotateX("+rotatex.value+"deg) rotateY("+rotatey.value+"deg) rotateZ("+rotatez.value+"deg)";
+	}
+	
+	
+	</script>
+</body>
+</html>

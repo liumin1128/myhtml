@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script>
+function navbg(n){//根据n的值决定位置
+	var navbg=document.getElementById("navbg");
+	navbg.style.transition="0.5s"
+	navbg.style.marginLeft=100*(n-1)+"px";
+	
+
+
+	
+	/*document.getElementById("navbg").style.marginLeft="100px"*/
+	<!--alert(divml);-->	
+}
+</script>
+</head>
+<style>
+*{
+	margin:0;
+	padding:0;
+	
+}
+ul{
+	width:500px;
+	height:30px;
+	background:rgba(180,180,180,1.00);
+	border-radius:15px;
+	
+}
+li{
+	position:relative;
+	float:left;
+	width:100px;
+	height:30px;
+	text-decoration:none;
+	text-outline:none;
+	list-style:none;
+	text-align:center;
+	line-height:30px;
+	z-index:1;
+	
+	
+}
+div{
+	/*transition:0.5s;*/
+	position:absolute;
+	margin-left:0;
+	float:left;
+	width:100px;
+	height:30px;
+	background:rgba(255,0,4,0.50);
+	border-radius:15px;
+	z-index:0;	
+}
+/*ul:hover div{
+	margin-left:100px;
+	
+	
+}*/
+</style>
+
+<body>
+<ul>
+<div id="navbg"></div>
+<li onMouseOver="navbg(1);">1</li>
+<li onMouseOver="navbg(2);">2</li>
+<li onMouseOver="navbg(3);">3</li>
+<li onMouseOver="navbg(4);">4</li>
+<li onMouseOver="navbg(5);">5</li>
+
+</ul>
+</body>
+</html>

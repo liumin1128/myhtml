@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+	*{
+	margin: 0;
+	padding: 0;
+	border: 0;
+	}
+	.container{
+		width: 800px;
+		margin: 0 auto;
+	}
+	.pics{
+		width: 100%;
+		position: relative;
+		height: 500px;
+		perspective: 500px;
+		-webkit-perspective: 500;
+		perspective-origin: 50% 50%;
+		-webkit-perspective-origin: 50% 50%;
+		overflow: hidden;
+	}
+	.pic{
+		width: 100%;
+		height: 500px;
+		position: absolute;
+		opacity:0;
+	}
+	#pic0{
+		opacity: 1;
+	}
+	.pic img{
+		width: 100%;
+		height: 500px;
+	}
+	.picnew{
+		position: absolute;
+		width: 100%;
+		height: 500px;
+		background-size:800px 500px;
+		background-repeat:no-repeat;
+		-webkit-transition: 1s;
+		   -moz-transition: 1s;
+		    -ms-transition: 1s;
+		     -o-transition: 1s;
+		        transition: 1s;
+	}
+#next{
+	position: relative;
+	margin: 50px auto;
+	width: 100px;
+	height: 35px;
+	color: #fff;
+	text-align: center;
+	line-height: 35px;
+	border-radius: 35px;
+	z-index: 10;
+}
+#next:after{
+	position: absolute;
+	width: 100px;
+	height: 35px;
+	content: "";
+	background: #000;
+	left: 1px;
+	bottom: -2px;
+	z-index: -2;
+	border-radius: 35px;
+
+}
+#next:before{
+	position: absolute;
+	width: 100px;
+	height: 35px;
+	content: "";
+	background: #393550;
+	
+	z-index: -1;
+	border-radius: 35px;
+
+}
+#next:hover:before{
+	background: #395660;
+}
+#next:active:before{
+	background: #415660;
+	left: 1px;
+	bottom: -2px;
+
+}
+.zsq{
+	position: absolute;
+	width:400px;
+	height: 10px;
+	float: right;
+	bottom: 10px;
+	right: 10px;
+	z-index: 99999999;
+}
+.zsq li{
+	float: right;
+	height: 10px;
+	width: 6%;
+	border-radius: 10px;
+	background-color: #fff;
+	margin: 3px;
+	list-style: none;
+	-webkit-transition: 0.5s;
+	   -moz-transition: 0.5s;
+	    -ms-transition: 0.5s;
+	     -o-transition: 0.5s;
+	        transition: 0.5s;
+	box-shadow: 1px 1px 2px #333;
+}
+#zsq0{
+	width: 12%;
+}
+</style>
+<body>
+	<div class="container" >
+		<div class="pics" onMouseOver="run=window.clearInterval(run)" onMouseOut="run=window.setInterval(runpic,3000)">
+			<div id="pic0" class="pic"><img src="img/0.jpg" alt=""></div>
+			<div id="pic1" class="pic"><img src="img/1.jpg" alt=""></div>
+			<div id="pic2" class="pic"><img src="img/2.jpg" alt=""></div>
+			<div id="pic3" class="pic"><img src="img/3.jpg" alt=""></div>
+			<div id="pic4" class="pic"><img src="img/4.jpg" alt=""></div>
+			<div id="pic5" class="pic"><img src="img/5.jpg" alt=""></div>
+			<div id="pic6" class="pic"><img src="img/6.jpg" alt=""></div>
+			<div id="pic7" class="pic"><img src="img/7.jpg" alt=""></div>
+			<div id="pic8" class="pic"><img src="img/8.jpg" alt=""></div>
+			<div id="pic9" class="pic"><img src="img/9.jpg" alt=""></div>
+			<ul class="zsq">
+				<li id="zsq0" onclick="turn(0)"></li>
+				<li id="zsq1" onclick="turn(1)"></li>
+				<li id="zsq2" onclick="turn(2)"></li>
+				<li id="zsq3" onclick="turn(3)"></li>
+				<li id="zsq4" onclick="turn(4)"></li>
+				<li id="zsq5" onclick="turn(5)"></li>
+				<li id="zsq6" onclick="turn(6)"></li>
+				<li id="zsq7" onclick="turn(7)"></li>
+				<li id="zsq8" onclick="turn(8)"></li>
+				<li id="zsq9" onclick="turn(9)"></li>
+			</ul>
+		</div>
+		
+		<div id="next" onclick="next()">NEXT</div>
+	</div>
+	<script>
+		var cur = 0;
+		var run = window.setInterval(runpic,3000);
+        var pics = document.getElementById("pics");
+        function runpic(){
+                next();
+            }
+		function curCheck(cur){
+			if(cur<0){
+				cur = 9;
+			}else if(cur>9){
+				cur = 0;
+			}
+			return cur;
+		}
+		function next(){
+			var curPage = document.getElementById("pic"+cur);
+			var nextPage = document.getElementById("pic"+curCheck(cur+1));
+			animation();
+			curPage.style.opacity = "0";
+			nextPage.style.opacity = "1";
+			cur = curCheck(cur+1);
+			zsqchange();
+		}
+		
+		
+		function animation(){//马赛克
+					var source = document.getElementById("pic"+cur);
+					var del = Math.floor(Math.random()*20);
+					var act = Math.floor(Math.random()*20);
+					var m = Math.floor(Math.random()*10);
+					var n = Math.floor(Math.random()*16);
+					m = 10;
+				 	n = 16;
+				 	// del = 10;
+				 	act = 1;
+					remove();
+					creat(m,n,source);
+					for(i=0;i<m*n;i++){
+						var obj = document.getElementById("ani"+i);
+						obj.style.transitionProperty = "width,height,opacity,transform";
+						obj.style.transitionDuration = "1s,1s,1s,1s";
+						delay(obj,del,i,m,n);
+						action(obj,act,i,m,n);
+					}
+		
+		}
+		function delay(obj,del,i,m,n){
+			switch (del){
+				case 1://从左到右
+					obj.style.transitionDelay = i%n*5/m/n+"s";
+					break;
+				case 2://从右到左
+					obj.style.transitionDelay =(n-i%n)*5/m/n+"s";
+					break;
+				case 3://从上到下
+					obj.style.transitionDelay =Math.floor(i/n)*5/m/n+"s";
+					break;
+				case 4://从下到上
+					obj.style.transitionDelay =(n-Math.floor(i/n))*5/m/n+"s";
+					break;
+				case 5://对角线(左上到右下)
+					obj.style.transitionDelay = (i%n+Math.floor(i/m))*5/m/n+"s";
+					break;
+				case 6://对角线(右下到左上)
+					obj.style.transitionDelay = (m-i%n-Math.floor(i/m))*5/m/n+"s";
+					break;
+				case 7://对角线(右上到左下)
+					obj.style.transitionDelay = ((m-i%n)+Math.floor(i/m))*5/m/n+"s";
+					break;
+				case 8://对角线(左下到右上)
+					obj.style.transitionDelay = (i%n+n-Math.floor(i/m))*5/m/n+"s";
+					break;
+				case 9://中间到两边
+					for(k=0;k<n/2;k++){
+							if(i%n==(0+k)||i%n==(n-1-k))
+								obj.style.transitionDelay = (1-k*5/m/n)+"s";
+						}
+					break;
+				case 10://两边到中间
+					for(k=0;k<n/2;k++){
+							if(i%n==(0+k)||i%n==(n-1-k))
+								obj.style.transitionDelay = k*5/m/n+"s";
+						}
+					break;
+				// case 11://两边到中间
+				// 	var arr = new Array();
+				// 	for(p=0;p<3;p++)
+				// 		for(q=0;q<3;q++)
+				// 			arr[p][q] = 0;
+				// 	console.log(arr);
+				// 	break;
+				case 12://马赛克
+					obj.style.transitionDelay = i%m*0.1+"s";
+					break;
+				// case 13://顺序
+				// 	obj.style.transitionDelay = i*5/m/n+"s";
+				// 	break;	
+				default :
+					obj.style.transitionDelay = Math.random()*0.5+"s";
+
+				// case 11://两边到中间
+				// if(Math.floor(i/n)<n/2)
+				// 	obj.style.transitionDelay =Math.floor(i/n)*5/m/n+"s";
+				// else
+				// 	obj.style.transitionDelay =(n-Math.floor(i/n))*5/m/n+"s";
+				// console.log(Math.floor(i/n));
+				// 	break;
+				
+			}
+			return;
+		}
+		function action(obj,act,i,m,n){
+			switch(act){
+				case 1:
+					obj.style.opacity = "0";
+					break;
+				case 2:
+					obj.style.width = "0";
+					obj.style.opacity = "0";
+
+					break;
+				case 3:
+					obj.style.height = "0";
+					break;
+				case 4:
+					obj.style.width = "0";
+					obj.style.height = "0";
+					break;
+				case 5:
+					obj.style.transform = "scale(0)";
+					break;
+				case 6:
+					obj.style.transform = "scale(0)";
+					obj.style.opacity = "0";
+					break;
+				case 7: //律动
+					obj.style.transform = "translateZ(100px)";
+					obj.style.opacity = "0";
+					break;
+				case 8: //扑面而来
+					obj.style.transform = "translateZ(500px)";
+					obj.style.opacity = "0";
+					break;
+				case 9: //秋风扫落叶(右)
+					obj.style.transform = "translateZ("+(100-Math.random()*200)+"px) translateX("+(n-i%n)*100+"%) rotateY(180deg)";
+					obj.style.opacity = "0";
+					break;
+				case 10: //秋风扫落叶(左)
+					obj.style.transform = "translateZ("+(100-Math.random()*200)+"px) translateX("+(-n+i%n)*100+"%) rotateY(360deg)";
+					obj.style.opacity = "0";
+					break;
+				case 11: //塌陷
+					obj.style.transform = "translateZ("+(-Math.random()*1000)+"px)";
+					obj.style.opacity = "0";
+					break;
+				case 12: //向左上角浮动
+						obj.style.transform = "translateY("+(-2-Math.floor(i/n))*100+"%) translateX("+(-i%n-2)*100+"%) rotateX(90deg) rotateY(-90deg) rotateZ(-90deg)";
+					    obj.style.opacity = "0";
+						break;
+				case 13: //右上角聚拢
+						obj.style.transform = "translateY("+(-2-Math.floor(i/n))*100+"%) translateX("+(n-i%n)*100+"%) rotateX(90deg) rotateY(90deg) rotateZ(90deg)";
+					    obj.style.opacity = "0";
+						break;
+				default:
+					var act = Math.floor(Math.random()*13);
+					action(obj,act,i,m,n);
+
+			}
+		}
+		function remove(){
+			for(i=0;i<200;i++){
+				if(document.getElementById("ani"+i)){
+					var obj = document.getElementById("ani"+i);
+					obj.parentNode.removeChild(obj);
+				}
+			}
+		}
+		function creat(m,n,source){//m,n表示行列划分,source表示目标元素
+			for(i=0;i<m*n+1;i++){
+				var obj = document.createElement("div");
+				var width = source.offsetWidth/n;
+				var height = source.offsetHeight/m;
+				obj.setAttribute("id","ani"+i);
+				obj.style.width = width+"px";
+				obj.style.height = height+"px";
+				obj.style.position = "absolute";
+				obj.style.left = i%n*width+"px";
+				obj.style.top = Math.floor(i/n)*height+"px";
+				obj.style.backgroundImage = "url("+source.childNodes.item(0).src+")";
+				obj.style.backgroundSize = width*n+"px "+height*m+"px";
+				obj.style.backgroundPosition = -i%n*width+"px "+(-Math.floor(i/n))*height+"px";
+				obj.style.zIndex = "999";
+				source.parentNode.appendChild(obj);
+				if(i==m*n){
+					obj.style.width = "0";
+				}
+			}
+
+			
+		}
+		function zsqchange(){
+			var objzsq = document.getElementById("zsq"+cur);
+			for(i = 0;i<10;i++){
+				otherzsq = document.getElementById("zsq"+i);
+				otherzsq.style.width = "6%";
+			}
+			objzsq.style.width = "12%";
+
+		}
+		function turn(n){
+			cur = curCheck(n-1);
+			next();
+		}
+	</script>
+</body>
+</html>

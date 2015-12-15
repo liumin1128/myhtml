@@ -1,0 +1,225 @@
+/* LESS Document*/
+/*LESS Document*/
+@charset "utf-8";
+/* CSS Document */
+/*
+Theme Name: xuanfeng
+Date:2013/10/01;
+Version:2.0;
+*/
+body {
+  /* HTML5标签初始化 
+--------------------------------------------------*/
+  /* 标签初始化 
+--------------------------------------------------*/
+  /* 解决Google浏览器字体不小于12px的问题
+--------------------------------------------------*/
+  /*让position:fixed在IE6下可用! */
+}
+body html,
+body body,
+body div,
+body span,
+body applet,
+body object,
+body iframe,
+body h1,
+body h2,
+body h3,
+body h4,
+body h5,
+body h6,
+body p,
+body pre,
+body a,
+body abbr,
+body acronym,
+body address,
+body big,
+body cite,
+body code,
+body del,
+body dfn,
+body em,
+body img,
+body ins,
+body kbd,
+body q,
+body s,
+body samp,
+body small,
+body strike,
+body strong,
+body sub,
+body sup,
+body tt,
+body var,
+body b,
+body u,
+body i,
+body center,
+body dl,
+body dt,
+body dd,
+body ol,
+body ul,
+body li,
+body fieldset,
+body form,
+body label,
+body legend,
+body table,
+body caption,
+body tbody,
+body tfoot,
+body thead,
+body tr,
+body th,
+body td,
+body article,
+body aside,
+body canvas,
+body details,
+body embed,
+body figure,
+body figcaption,
+body footer,
+body header,
+body hgroup,
+body menu,
+body nav,
+body output,
+body ruby,
+body section,
+body summary,
+body time,
+body mark,
+body audio,
+body video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+body article,
+body aside,
+body details,
+body figcaption,
+body figure,
+body footer,
+body header,
+body hgroup,
+body menu,
+body nav,
+body section {
+  display: block;
+}
+body body {
+  line-height: 1;
+  color: #333;
+  font: 14px/1.5 "微软雅黑", Arial, Helvetica, Verdana, sans-serif;
+}
+body ol,
+body ul {
+  list-style: none;
+}
+body blockquote,
+body q {
+  quotes: none;
+  border-left: solid 4px #39c;
+  margin-left: 10px;
+  padding-left: 10px;
+  background: whitesmoke;
+  margin: 10px auto;
+  padding: 6px 10px;
+  color: #666;
+  font-size: 20px;
+}
+body i {
+  font-style: normal;
+  font-weight: normal;
+}
+body blockquote:before,
+body blockquote:after,
+body q:before,
+body q:after {
+  content: '';
+  content: none;
+}
+body table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+body a img {
+  border: 0;
+}
+body h1 {
+  font-size: 24px;
+}
+body h2 {
+  font-size: 20px;
+}
+body h3 {
+  font-size: 18px;
+}
+body h4 {
+  font-size: 14px;
+}
+body h5,
+body h6 {
+  font-size: 12px;
+}
+body a {
+  text-decoration: none;
+}
+body a:hover {
+  text-decoration: underline;
+}
+body div {
+  display: block;
+}
+body html {
+  -webkit-text-size-adjust: none;
+}
+body a:focus {
+  outline: none;
+}
+body * html,
+body * html body {
+  background-image: url(about:blank);
+  background-attachment: fixed;
+}
+.site-top ul {
+  position: relative;
+  height: 20px;
+  float: left;
+  list-style: none;
+}
+.site-top li {
+  float: left;
+  padding: 0 10px;
+}
+.site-top a {
+  color: #333;
+}
+.site-top ul:nth-child(n+4) {
+  float: right;
+}
+.site-logo h1 {
+  position: absolute;
+  top: 80px;
+  left: 150px;
+}
+.site-logo .button {
+  background-color: #992fdc;
+  float: right;
+  width: 70px;
+  height: 25px;
+  border-radius: 5px;
+  line-height: 25px;
+  text-align: center;
+  color: #fff;
+  margin: 0px 10px;
+}

@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+<script src="jquery-2.1.3.min.js"></script>
+<script>
+window.setInterval(abc,1000)
+function abc() {
+	var a=0;
+	var b=0;
+	var c=0;
+	
+	a=Math.random();
+	a=a*255;
+	a=parseInt(a);
+	
+    b=Math.random();
+	b=b*255;
+	b=parseInt(b);
+	
+	c=Math.random();
+	c=c*255;
+	c=parseInt(c);
+	document.getElementById("input1").value=a;
+	document.getElementById("input2").value=b;
+	document.getElementById("input3").value=c;
+	
+	var bg=document.getElementById("div");
+                var rand=Math.round(Math.random()*1000000);
+                bg.style.backgroundColor="#"+rand;
+				document.getElementById("input4").value=rand;
+}
+</script>
+<style >
+div{
+	width:500px;
+	height:500px;
+	border-radius:100%;
+	border:1px #333 solid;
+	transition:1s;
+	background:#B100FF
+	
+}
+</style>
+<body>
+<input type="text" id="input1">
+<input type="text" id="input2">
+<input type="text" id="input3">
+<input type="text" id="input4">
+<div id="div"></div>
+
+</body>
+</html>

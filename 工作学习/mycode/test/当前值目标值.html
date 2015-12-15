@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+html,body{
+	width: 100%;
+	height: 100%;
+}
+.container{
+	width: 500px;
+	height: 350px;
+	border:1px #999 solid;
+	position: relative;
+	margin: 100px auto 0 auto;
+	perspective:1000px;
+	-webkit-perspective:1000px;
+	/*overflow: hidden;*/
+}
+.page{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	opacity: 0;
+	-webkit-transform: scale(1.5) rotateY(50deg);
+	   -moz-transform: scale(1.5) rotateY(50deg);
+	    -ms-transform: scale(1.5) rotateY(50deg);
+	     -o-transform: scale(1.5) rotateY(50deg);
+	        transform: scale(1.5) rotateY(50deg);
+	-webkit-transition: all 1s;
+	   -moz-transition: all 1s;
+	    -ms-transition: all 1s;
+	     -o-transition: all 1s;
+	        transition: all 1s;
+	-webkit-transform-origin:100% 50%;
+			   -moz-transform-origin:100% 50%;
+			    -ms-transform-origin:100% 50%;
+			     -o-transform-origin:100% 50%;
+			        transform-origin:100% 50%;
+}
+#page0{
+	opacity: 1;
+	-webkit-transform: scale(1) rotateY(0deg);
+	   -moz-transform: scale(1) rotateY(0deg);
+	    -ms-transform: scale(1) rotateY(0deg);
+	     -o-transform: scale(1) rotateY(0deg);
+	        transform: scale(1) rotateY(0deg);
+
+}
+.page img{
+	width: 100%;
+	height: 100%;
+}
+.crtl ul{
+	position: relative;
+	left: 50%;
+	transform:translateX(-50%);
+	float: left;
+}
+
+.crtl li{
+
+	width: 20px;
+	height: 20px;
+	float: left;
+	background: rgba(0,0,0,0.5);
+	border-radius: 100%;
+	color: #fff;
+	text-align: center;
+	line-height: 20px;
+	transition:0.5s;
+	list-style: none;
+}
+.crtl li:hover{
+	background: rgba(255,0,0,0.5);
+}
+#li0{
+	background: rgba(0,255,0,0.5);
+}
+.button{
+			width: 100px;
+			height: 20px;
+			position: relative;
+	left: 50%;
+	transform:translateX(-50%);
+			
+		}
+</style>
+<body>
+	<div class="container" onMouseOver="run=window.clearInterval(run)" onMouseOut="run=window.setInterval(runpic,3000)">
+		<div class="page" id="page0"><img src="image/0.jpg" alt=""></div>
+		<div class="page" id="page1"><img src="image/1.jpg" alt=""></div>
+		<div class="page" id="page2"><img src="image/2.jpg" alt=""></div>
+		<div class="page" id="page3"><img src="image/3.jpg" alt=""></div>
+		<div class="page" id="page4"><img src="image/4.jpg" alt=""></div>
+		<div class="page" id="page5"><img src="image/5.jpg" alt=""></div>
+		<div class="page" id="page6"><img src="image/6.jpg" alt=""></div>
+		<div class="page" id="page7"><img src="image/7.jpg" alt=""></div>
+	</div>
+	<div class="crtl" onMouseOver="run=window.clearInterval(run)" onMouseOut="run=window.setInterval(runpic,3000)">
+			<ul>
+				<li id="li0" onMouseOver="turn(1)">1</li>
+				<li id="li1" onMouseOver="turn(2)">2</li>
+				<li id="li2" onMouseOver="turn(3)">3</li>
+				<li id="li3" onMouseOver="turn(4)">4</li>
+				<li id="li4" onMouseOver="turn(5)">5</li>
+				<li id="li5" onMouseOver="turn(6)">6</li>
+				<li id="li6" onMouseOver="turn(7)">7</li>
+				<li id="li7" onMouseOver="turn(8)">8</li>
+			</ul>
+	</div>
+	<div class="button" onMouseOver="run=window.clearInterval(run)" onMouseOut="run=window.setInterval(runpic,3000)">
+	<input type="button" value="prev" onclick="prev()">
+	<input type="button" value="next" onclick="next()">
+		
+	</div>
+	<script>
+		var cur = 0;
+		var run = window.setInterval(runpic,3000);
+		function check(n){
+			if(n>7)n = 0;
+			if(n<0)n = 7;
+			return n;
+		}
+		function next(){
+			change(cur,check(cur+1),"page");
+			change2(cur,check(cur+1),"li");
+			cur=check(cur+1);
+		}
+		function prev(){
+			change(cur,check(cur-1),"page");
+			change2(cur,check(cur-1),"li");
+			cur=check(cur-1);
+		}
+		function runpic(){
+			next();
+		}
+		function turn(n){
+			change(cur,check(n-1),"page");
+			change2(cur,check(n-1),"li");
+			cur=check(n-1);
+		}
+		function change(cur,obj,tag){
+			var cur = document.getElementById(tag+cur);
+			var obj = document.getElementById(tag+obj);
+			cur.style.transform = "scale(1.5) rotateY(90deg)";
+			obj.style.transform = "scale(1.0) rotateY(0deg)"
+			cur.style.opacity = "0";
+			obj.style.opacity = "1";
+			
+		}
+		function change2(cur,obj,tag){
+			var cur = document.getElementById(tag+cur);
+			var obj = document.getElementById(tag+obj);
+			cur.style.background = "rgba(0,0,0,0.5)";
+			obj.style.background = "rgba(0,255,0,0.5)";
+		}
+
+	</script>
+</body>
+</html>

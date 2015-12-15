@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+	*{
+	margin: 0;
+	padding: 0;
+	border: 0;
+	}
+	.container{
+		width: 800px;
+		margin: 0 auto;
+	}
+	.pics{
+		width: 100%;
+		position: relative;
+		height: 500px;
+	}
+	.pic{
+		width: 100%;
+		height: 500px;
+		position: absolute;
+		opacity:0;
+	}
+	.pic img{
+		width: 100%;
+		height: 500px;
+	}
+	.picnew{
+		position: absolute;
+		width: 100%;
+		height: 500px;
+		background-size:800px 500px;
+		background-repeat:no-repeat;
+		-webkit-transition: 0.7s;
+		   -moz-transition: 0.7s;
+		    -ms-transition: 0.7s;
+		     -o-transition: 0.7s;
+		        transition: 0.7s;
+	}
+	.picnew:hover{
+		-webkit-transform: rotate(30deg);
+		   -moz-transform: rotate(30deg);
+		    -ms-transform: rotate(30deg);
+		     -o-transform: rotate(30deg);
+		        transform: rotate(30deg);
+	}
+</style>
+<body>
+	<div class="container">
+		<div class="pics">
+			<div id="pic0" class="pic"><img src="img/0.jpg" alt=""></div>
+			<div id="pic1" class="pic"><img src="img/1.jpg" alt=""></div>
+			<div id="pic2" class="pic"><img src="img/2.jpg" alt=""></div>
+			<div id="pic3" class="pic"><img src="img/3.jpg" alt=""></div>
+			<div id="pic4" class="pic"><img src="img/4.jpg" alt=""></div>
+			<div id="pic5" class="pic"><img src="img/5.jpg" alt=""></div>
+			<div id="pic6" class="pic"><img src="img/6.jpg" alt=""></div>
+			<div id="pic7" class="pic"><img src="img/7.jpg" alt=""></div>
+			<div id="pic8" class="pic"><img src="img/8.jpg" alt=""></div>
+			<div id="pic9" class="pic"><img src="img/9.jpg" alt=""></div>
+		</div>
+		<div class="button">111
+			<input type="button" value="next" onclick="next(4)">
+		</div>
+	</div>
+	<script>
+		var cur = 0;
+		window.onload = init(4);//参数表示一个图片分成多少块
+		function curCheck(cur){
+			if(cur<0){
+				cur = 9;
+			}else if(cur>9){
+				cur = 0;
+			}
+			return cur;
+		}
+		function init(n){
+			for(j = 0; j < 10 ; j++){
+				creats(n,j);
+			}
+			for(i=0;i<n*n;i++){
+				var objNode = document.getElementById("picnew"+cur+i);
+				objNode.style.transform = "scale(1)";
+				objNode.style.opacity = "1";
+			}
+		}
+		function creats(n,cur){
+			for(i=0;i<n*n;i++){
+				creat(cur,n,i);
+			}
+		}
+		function creat(cur,n,i){
+			var sourceNode = document.getElementById("pic" + cur);
+			var objNode = document.createElement("div");
+			objNode.setAttribute("id","picnew"+cur+i);
+			objNode.setAttribute("class","picnew");
+			objNode.style.backgroundImage = "url("+sourceNode.childNodes.item(0).src+")";
+			objNode.style.width = sourceNode.offsetWidth/n + "px";
+			objNode.style.height = sourceNode.offsetHeight/n + "px";
+			objNode.style.left = i%n*sourceNode.offsetWidth/n +"px";
+			objNode.style.top = Math.floor(i/n)*sourceNode.offsetHeight/n + "px";
+			objNode.style.backgroundPosition = -i%n*sourceNode.offsetWidth/n + "px "+(-Math.floor(i/n)*sourceNode.offsetHeight/n)+"px";
+			objNode.style.transitionDelay=.03*i+"s";
+			objNode.style.zIndex = "99";
+			objNode.style.transform = "scale(0)";
+			sourceNode.parentNode.appendChild(objNode);
+			objNode.style.opacity = "0";
+		}
+		function next(n){
+			for(i=0;i<n*n;i++){
+				var objNode = document.getElementById("picnew"+cur+i);
+				objNode.style.transform = "scale(0)";
+				objNode.style.opacity = "0";
+			}
+			for(i=0;i<n*n;i++){
+				var objNode = document.getElementById("picnew"+curCheck(cur+1)+i);
+				objNode.style.transform = "scale(1)";
+				objNode.style.opacity = "1";
+			}
+			cur = curCheck(cur+1);
+		}
+	</script>
+</body>
+</html>

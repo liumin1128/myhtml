@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		div{
+			margin: 0;
+			padding: 0;
+		}
+		.container{
+			width: 500px;
+			height: 350px;
+			margin: 100px auto 0 auto;
+			position: relative;
+			perspective:1000px;
+			-webkit-perspective:800;
+			/*overflow: hidden;
+			padding: 0 300px 0 300px;*/
+
+		}
+		.page{
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			background: black;
+			color:#fff;
+			font-size: 400px;
+			line-height: 400px;
+			text-align: center;
+			-webkit-transition: all 1s;
+			   -moz-transition: all 1s;
+			    -ms-transition: all 1s;
+			     -o-transition: all 1s;
+			        transition: all 1s;
+			-webkit-transform-origin:50% 100%;
+			   -moz-transform-origin:50% 100%;
+			    -ms-transform-origin:50% 100%;
+			     -o-transform-origin:50% 100%;
+			        transform-origin:50% 100%;
+			-webkit-transform: rotateX(90deg);
+			   -moz-transform: rotateX(90deg);
+			    -ms-transform: rotateX(90deg);
+			     -o-transform: rotateX(90deg);
+			        transform: rotateX(90deg);
+
+			backface-visibility:hidden;
+			-webkit-backface-visibility:hidden;	/* Chrome 和 Safari */
+			-moz-backface-visibility:hidden; 	/* Firefox */
+			-ms-backface-visibility:hidden; 
+		}
+		.page img{
+			width: 100%;
+			height: 100%;
+		}
+		.page span{
+			width: 100px;
+			height: 30px;
+			font-size: 30px;
+			line-height: 30px;
+			text-align: center;
+			color: red;
+			z-index: 999;
+			position: absolute;
+			top: 100px;
+			opacity: 0;
+			-webkit-transform: translateX(-100px);
+			   -moz-transform: translateX(-100px);
+			    -ms-transform: translateX(-100px);
+			     -o-transform: translateX(-100px);
+			        transform: translateX(-100px);
+			-webkit-transition: all 1s;
+			   -moz-transition: all 1s;
+			    -ms-transition: all 1s;
+			     -o-transition: all 1s;
+			        transition: all 1s;
+			        transition-delay:1s;
+		}
+		#h10{
+			-webkit-transform: translateX(0px);
+			   -moz-transform: translateX(0px);
+			    -ms-transform: translateX(0px);
+			     -o-transform: translateX(0px);
+			        transform: translateX(0px);
+			opacity: 1;
+		}
+		#h10:hover{
+			-webkit-transform: translateX(100px);
+			   -moz-transform: translateX(100px);
+			    -ms-transform: translateX(100px);
+			     -o-transform: translateX(100px);
+			        transform: translateX(100px);
+		}
+		#page0{
+			-webkit-transform: rotateX(0deg);
+			   -moz-transform: rotateX(0deg);
+			    -ms-transform: rotateX(0deg);
+			     -o-transform: rotateX(0deg);
+			        transform: rotateX(0deg);
+		}
+		.button{
+			width: 100px;
+			height: 100px;
+			
+		}
+
+
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div id="page7" class="page"><img src="image/1.jpg"><span id="h17">7</span></div>
+		<div id="page6" class="page"><img src="image/2.jpg"><span id="h16">6</span></div>
+		<div id="page5" class="page"><img src="image/3.jpg"><span id="h15">5</span></div>
+		<div id="page4" class="page"><img src="image/4.jpg"><span id="h14">4</span></div>
+		<div id="page3" class="page"><img src="image/5.jpg"><span id="h13">3</span></div>
+		<div id="page2" class="page"><img src="image/6.jpg"><span id="h12">2</span></div>
+		<div id="page1" class="page"><img src="image/7.jpg"><span id="h11">1</span></div>
+		<div id="page0" class="page"><img src="image/8.jpg"><span id="h10">龙之谷</span></div>
+	</div>
+	<div class="button">
+	<input type="button" value="prev" onclick="turn2()">
+	<input type="button" value="next" onclick="turn()">
+		
+	</div>
+	<script>
+
+	var cur = 0;
+	function turn(){
+		if(cur>6)
+			return;
+		var curPage = document.getElementById("page"+cur);
+		curPage.style.transform = "rotateX(-90deg)";
+		cur+=1;
+		var nextPage = document.getElementById("page"+cur);
+		nextPage.style.transform = "rotateX(0deg)";
+		turnh1();
+	}
+	function turn2(){
+		if(cur<1)
+			return;
+		var curPage = document.getElementById("page"+cur);
+		curPage.style.transform = "rotateX(90deg)";
+		cur-=1;
+		var prevPage = document.getElementById("page"+cur);
+		prevPage.style.transform = "rotateX(0deg)";
+		turnh1();
+	}
+	function turnh1(){
+		next=cur+1;
+		prev=cur-1
+		var curH1 = document.getElementById("h1"+cur);
+		var nextH1 = document.getElementById("h1"+next);
+		var prevH1 = document.getElementById("h1"+prev);
+		curH1.style.opacity = "1";
+		nextH1.style.opacity = "0";
+		prevH1.style.opacity = "0";
+		curH1.style.transform = "translateX(0px)";
+		nextH1.style.transform = "translateX(-100px)";
+		prevH1.style.transform = "translateX(-100px)";
+	}
+	</script>
+</body>
+</html>

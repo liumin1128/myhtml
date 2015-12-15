@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>index02.html</title>
+<script src="js/jquery-2.1.3.min.js"></script>
+<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+<meta http-equiv="description" s content="this is my page">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+<!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+
+</head>
+<script>
+	$(function() {
+		$("#btn")
+				.click(
+						function() {
+							var params = {
+								province : $('#province').val()
+							};
+							$
+									.ajax({
+										type : "POST",
+										url : "student_select.action",
+										data : params,
+										dataType : "text",
+										success : function(data) {
+											var obj = $.parseJSON(data);
+											document.getElementById("response").innerHTML = data;
+											document.getElementById("cities").innerHTML = "<font color='red'>"
+													+ obj.cities + "</font>";
+											$('#ln')
+													.append(
+															"<font color='red'>"
+																	+ obj.myProvinces['沈阳市']
+																	+ "</font>");
+											$('#hlj')
+													.append(
+															"<font color='red'>"
+																	+ obj.myProvinces['黑龙江']
+																	+ "</font>");
+											$('#gd')
+													.append(
+															"<font color='red'>"
+																	+ obj.myProvinces['广东']
+																	+ "</font>");
+										},
+										error : function(data) {
+											alert("data=" + data);
+											return false;
+										}
+									});
+						});
+	});
+</script>
+
+<body>
+	<form id="form1" name="form1" method="post">
+		请输入省名: <input type="text" name="province" id="province"
+			style="width:100px" /> <label id="cities"></label>
+		<p />
+		辽宁:<label id="ln"></label><br> 黑龙江:<label id="hlj"></label><br>
+		广东:<label id="gd"></label><br>
+		<p />
+		<input type="button" value="提交" id="btn" /> <label id="response"></label>
+	</form>
+
+</body>
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+    <script>
+    var can = document.getElementById("canvas");
+    var ctx = can.getContext("2d");
+    var balls = [];
+    var PI = Math.PI;
+    window.onload = init();
+    function init(){
+        can.width = 1000;
+        can.height = 600;
+        can.style.backgroundColor = "#000";
+        // ctx.arc(100,100,100,0,2*PI);
+        // ctx.fillRect(0,0,can.width,can.height);
+        creatBalls();
+        // drawBall();
+        drawShadow();
+    }
+    function drawBg(){
+         ctx.fillStyle = "#000";
+         ctx.fillRect(0,0,can.width,can.height);
+    }
+    function drawBall(){
+        ctx.clearRect(0,0,can.width,can.height);
+        ctx.save();
+        //ctx.globalAlpha = 1;
+        for(i=0;i<balls.length;i++){
+            // ctx.globalCompositeOperation="lighter";
+            // ctx.shadowColor = balls[i].color;
+            // ctx.shadowOffsetX = 1;
+            // ctx.shadowOffsetY = 1;
+            // ctx.shadowBlur = 1;
+            ctx.fillStyle = balls[i].color;
+            ctx.beginPath();
+            ctx.arc(balls[i].x,balls[i].y,balls[i].radius,0,PI*2);
+            ctx.closePath();
+            ctx.fill();
+        }
+        ctx.restore();
+    }
+    function drawShadow(){
+        for(i=0;i<balls.length;i++){
+            ctx.globalCompositeOperation="lighter";
+            ctx.shadowColor = balls[i].color;
+            ctx.shadowOffsetX = 0;
+            ctx.shadowOffsetY = 0;
+            ctx.shadowBlur = (1-balls[i].radius/20)*5;
+            ctx.fillStyle = "rgab(0,0,0,0)";
+            ctx.beginPath();
+            ctx.arc(balls[i].x,balls[i].y,balls[i].radius,0,PI*2);
+            ctx.closePath();
+            ctx.fill();
+        }
+        // alert();
+    }
+    function creatBalls(){
+        for(i=0;i<100;i++){
+            var R = Math.floor(Math.random()*255);
+            var G = Math.floor(Math.random()*255);
+            var B = Math.floor(Math.random()*255);
+            var A = Math.random()*0.5+0.5;
+            if(i%2==0){
+                A = 1;
+            }
+            var radius = Math.floor(Math.random()*30+2);
+            ball = {
+                color:"rgba("+R+","+G+","+B+","+A+")",
+                radius:radius,
+                x:Math.random()*(can.width-2*radius) + radius,
+                y:Math.random()*200 + radius+300,
+                vx:Math.floor((Math.random()*5 + 1)),
+                vy:Math.floor((Math.random()*5 + 1))
+            };
+            balls[i] = ball;
+        }
+    }
+    </script>
+</body>
+</html>

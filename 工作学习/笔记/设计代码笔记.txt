@@ -1,0 +1,42 @@
+字体平和渲染
+body {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+过度色
+body {
+    font-family: 'PT Sans', sans-serif;
+    min-height: 740px;
+
+    background: rgb(215, 215, 215);
+    background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 500, from(rgb(240, 240, 240)), to(rgb(190, 190, 190)));
+    background: -webkit-radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
+    background:    -moz-radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
+    background:     -ms-radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
+    background:      -o-radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
+    background:         radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
+}
+XXXXXXXXXXXXXXXXXXXX.innerHTML = "你想要改变的内容";
+js获取鼠标位置和元素位置
+canvas.onmousedown = function(e){
+		e.preventDefault();
+		var point = windowToCanvas(e.clientX,e.clientY);
+		console.log(point.x,point.y);
+	}
+function windowToCanvas(x,y){
+		var bbox = canvas.getBoundingClientRect();
+		return{
+			x:x-bbox.left,
+			y:y-bbox.top
+		}
+	}
+
+
+//js判断元素颜色是否存在
+	非ie6
+       例如：if ( document.getElementById("XX").style.color == "rgb(184, 0, 0)")
+       注意："0"前面有空格。
+       ie6
+       例如：if ( document.getElementById("XX").style.color == "#333")
+
+document.createTextNode("Hello"));		

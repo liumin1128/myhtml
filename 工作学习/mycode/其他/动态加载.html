@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+.demo2{
+	margin: 200px;
+}
+	img{
+		width:200px;
+		transition:0.5s;
+		transform:translateX(200px); 
+	}
+</style>
+<body>
+	<ul class="demo" id="demo" >
+				<li><img name="pic[]" src="image/1.jpg"></li>
+				<li><img name="pic[]" src="image/2.jpg"></li>
+				<li><img name="pic[]" src="image/3.jpg"></li>
+				<li><img name="pic[]" src="image/4.jpg"></li>
+				<li><img name="pic[]" src="image/5.jpg"></li>
+				<li><img name="pic[]" src="image/6.jpg"></li>
+				<li><img name="pic[]" src="image/7.jpg"></li>
+				<li><img name="pic[]" src="image/8.jpg"></li>
+				<li><img name="pic[]" src="image/1.jpg"></li>
+				<li><img name="pic[]" src="image/2.jpg"></li>
+				<li><img name="pic[]" src="image/3.jpg"></li>
+				<li><img name="pic[]" src="image/4.jpg"></li>
+				<li><img name="pic[]" src="image/5.jpg"></li>
+				<li><img name="pic[]" src="image/6.jpg"></li>
+				<li><img name="pic[]" src="image/7.jpg"></li>
+				<li><img name="pic[]" src="image/8.jpg"></li>
+	</ul>
+	<ul class="demo2" id="demo2" >
+				<li><img name="pic2[]" src="image/1.jpg"></li>
+				<li><img name="pic2[]" src="image/2.jpg"></li>
+				<li><img name="pic2[]" src="image/3.jpg"></li>
+				<li><img name="pic2[]" src="image/4.jpg"></li>
+				<li><img name="pic2[]" src="image/5.jpg"></li>
+				<li><img name="pic2[]" src="image/6.jpg"></li>
+				<li><img name="pic2[]" src="image/7.jpg"></li>
+				<li><img name="pic2[]" src="image/8.jpg"></li>
+				<li><img name="pic2[]" src="image/1.jpg"></li>
+				<li><img name="pic2[]" src="image/2.jpg"></li>
+				<li><img name="pic2[]" src="image/3.jpg"></li>
+				<li><img name="pic2[]" src="image/4.jpg"></li>
+				<li><img name="pic2[]" src="image/5.jpg"></li>
+				<li><img name="pic2[]" src="image/6.jpg"></li>
+				<li><img name="pic2[]" src="image/7.jpg"></li>
+				<li><img name="pic2[]" src="image/8.jpg"></li>
+	</ul>
+	<script>
+var cli = document.getElementsByName("pic[]");
+		window.onscroll = function(){scroll()}
+		function scroll(){
+			for(i=0;i<cli.length;i++){
+				num = cli[i].getBoundingClientRect().top;
+				if(num<500&&num>-200){
+					cli[i].style.transform = "translateX(0px) scale(2,2)";
+					
+				}else{
+					cli[i].style.transform = "translateX(200px) scale(0.5,0.5) ";
+				
+				}
+			}
+		}
+
+	
+
+	</script>
+</body>
+</html>

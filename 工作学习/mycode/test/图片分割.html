@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<style>
+	*{
+		margin: 0;
+		padding: 0;
+		border:0px;
+	}
+
+	.pic{
+		width: 500px;
+		height: 350px;
+		overflow: hidden;
+	}
+	.pic img{
+		height: 350px;
+		width: 500px;
+	}
+	.img{
+		width: 100px;
+		height: 350px;
+		overflow: hidden;
+		float: left;
+		-webkit-transition: 0.5s;
+		   -moz-transition: 0.5s;
+		    -ms-transition: 0.5s;
+		     -o-transition: 0.5s;
+		        transition: 0.5s;
+	}
+	.img:hover{
+		-webkit-transform: rotateY(90deg);
+		   -moz-transform: rotateY(90deg);
+		    -ms-transform: rotateY(90deg);
+		     -o-transform: rotateY(90deg);
+		        transform: rotateY(90deg);
+	}
+</style>
+<body>
+
+        <div id="pic" class="pic" style="background:url(image/1.jpg)">
+          <!--   <img src="image/1.jpg" alt=""/> -->
+        </div>
+        <script>
+        window.onload = function(){
+        	var sourceNode = document.getElementById("pic");
+        	var cloneNode = sourceNode.cloneNode(true);
+        	cloneNode.setAttribute("id","pic");
+        	cloneNode.setAttribute("class","img");
+        	sourceNode.parentNode.appendChild(cloneNode);
+        	var cloneNode2 = sourceNode.cloneNode(true);
+        	cloneNode2.setAttribute("id","pic");
+        	cloneNode2.setAttribute("class","img");
+        	cloneNode2.style.backgroundPosition = "-100px 0px";
+        	sourceNode.parentNode.appendChild(cloneNode2);
+        	var cloneNode3 = sourceNode.cloneNode(true);
+        	cloneNode3.setAttribute("id","pic");
+        	cloneNode3.setAttribute("class","img");
+        	cloneNode3.style.backgroundPosition = "-200px 0px";
+        	sourceNode.parentNode.appendChild(cloneNode3);
+        	var cloneNode4 = sourceNode.cloneNode(true);
+        	cloneNode4.setAttribute("id","pic");
+        	cloneNode4.setAttribute("class","img");
+        	cloneNode4.style.backgroundPosition = "-300px 0px";
+        	sourceNode.parentNode.appendChild(cloneNode4);
+        	var cloneNode5 = sourceNode.cloneNode(true);
+        	cloneNode5.setAttribute("id","pic");
+        	cloneNode5.setAttribute("class","img");
+        	cloneNode5.style.backgroundPosition = "-400px 0px";
+        	sourceNode.parentNode.appendChild(cloneNode5);
+        }
+        </script>
+</body>
+</html>

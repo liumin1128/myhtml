@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>index02.html</title>
+<script src="js/jquery-1.11.3.js"></script>
+<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+<meta http-equiv="description" content="this is my page">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+<!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+
+</head>
+<script>
+	$(function() {
+		$("#btn").click(function() {
+			var params = {
+				name : $('#name').val(),
+				password : $('#password').val()
+			};
+			$.ajax({
+				type : "POST",
+				url : "adminLogin.action",
+				data : params,
+				dataType : "text",
+				success : function(data) {
+					var obj = $.parseJSON(data);
+					$('#response').append();
+
+				},
+				error : function(data) {
+					alert("data=" + data);
+					return false;
+				}
+			});
+		});
+	});
+</script>
+
+<body>
+	<form id="form1" name="form1" method="post">
+		<input name="admin.A_Name" type="text" required="required" id="name"
+			placeholder="用户名/邮箱/手机号" style="margin-bottom: 18px;" />
+		<!--密码-->
+		<br /> <input name="admin.A_Password" type="password" id="password"
+			required="required" placeholder="密码" style="margin-bottom: 18px;" />
+		<p />
+		<input type="button" value="提交" id="btn" /> <label id="response"></label>
+	</form>
+
+</body>
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+</html>

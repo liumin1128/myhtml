@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+body{
+	font-family: Arial;
+	font-size: 20px;
+	/*background:yellow;*/
+	  background: -webkit-repeating-radial-gradient(red, yellow 50%, green 15%); /* Safari 5.1 - 6.0 */
+    background: -o-repeating-radial-gradient(red, yellow 50%, green 15%); /* Opera 11.6 - 12.0 */
+    background: -moz-repeating-radial-gradient(red, yellow 50%, green 15%); /* Firefox 3.6 - 15 */
+    background: repeating-radial-gradient(red, yellow 50%, green 15%); /* 标准的语法（必须放在最后） */
+}
+	.imgs{
+		
+		margin: 100px;
+		box-shadow: 0px 140px 100px -50px #fff,100px 0px 100px -50px #fff,-100px 0px 100px -50px #fff,0px 2px 5px 1px #000;
+		overflow: hidden;
+	
+
+
+	}
+	.imgs:after{
+		width: 400px;
+		height: 100px;
+		position: absolute;
+
+	}
+
+
+	p.color_shine
+{
+font-size: 3em;
+margin: 0 auto;
+padding:20px 0;
+}
+	p{
+		color: red;
+		text-shadow:0px 0px 0px 10px #fff,
+	5px 5px 5px 5px #333;
+	
+		/*文字渐变*/
+	-webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0))); 
+	font-size: 50px;
+	font-weight: bold;
+	
+	
+
+
+	}
+
+
+.color_shine
+{
+background: #222 -webkit-gradient(linear, left top, right top, from(#222), to(#222), color-stop(0.5, #fff)) 0 0 no-repeat;
+-webkit-background-size: 125px;
+
+color: rgba(255, 255, 255, 0.1);
+-webkit-background-clip: text;
+
+-webkit-animation-name: color_shine;
+-webkit-animation-duration: 2s;
+-webkit-animation-iteration-count: infinite;
+}
+
+@-webkit-keyframes color_shine
+{
+0%
+{
+background-position: top left;
+}
+100%
+{
+background: top right;
+}
+}
+
+</style>
+<script type="text/javascript">
+	window.onload = function(){
+		document.getElementById("img1").style.width="200px";
+		
+	}
+
+</script>
+<body>
+<h1 class="color_shine">交互设计中心-72色 72COLOR.COM</h1>
+<p class="p">HELLO WORD
+你好,大学</p>
+<img id="img1" class="imgs" src="1.jpg">
+
+	
+</body>
+</html>

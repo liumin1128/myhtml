@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+<link rel="stylesheet" href="impress.css">
+
+</head>
+<style>
+	*{
+		-webkit-transition: 1s;
+		   -moz-transition: 1s;
+		    -ms-transition: 1s;
+		     -o-transition: 1s;
+		        transition: 1s;
+		        font-family:"微软雅黑,宋体";
+		        font-weight:bold;
+	}
+	.step{
+		font-size: 45px;
+		color:#333;
+		text-shadow:1px 1px 3px #999;
+		/*width: 800px;*/
+		/*height: 500px;*/
+		/*background-color: rgba(0,0,0,0.03);*/
+		backface-visibility:hidden;
+-webkit-backface-visibility:hidden;	/* Chrome 和 Safari */
+-moz-backface-visibility:hidden; 	/* Firefox */
+-ms-backface-visibility:hidden; 
+	}
+	.big1{
+		margin: 10px;
+		font-size: 2em;
+		color: #000;
+		font-weight: bolder;
+	}
+	.big2{
+		margin: 10px;
+		font-size: 3em;
+		color: #000;
+		font-weight: bolder;
+	}
+	.big7{
+		
+		margin: 10px;
+		font-size: 6em;
+		color: #000;
+		font-weight: bolder;
+		text-shadow:3px 3px 10px #999;
+
+	}
+	.step.present .small{
+		-webkit-transition: 1s;
+		   -moz-transition: 1s;
+		    -ms-transition: 1s;
+		     -o-transition: 1s;
+		        transition: 1s;
+		margin: 10px;
+
+		font-size: 0.5em;
+		color: #000;
+		font-weight: bolder;
+	}
+	 .small2{
+		margin: 10px;
+
+		font-size: 0.7em;
+	}
+	.step.present .yuan{
+		-webkit-transition: 1s;
+		   -moz-transition: 1s;
+		    -ms-transition: 1s;
+		     -o-transition: 1s;
+		        transition: 1s;
+		margin:  0 200px ;
+		position: absolute;
+	}
+	
+	.rotatey30{
+		padding:3px 20px;
+		transform: rotate(30deg);
+		-webkit-transform: rotate(30deg) ;	/* Safari 和 Chrome */
+		-moz-transform: rotate(30deg) ;
+		display: inline-block;
+		background-color: rgba(0,0,0,0.2);
+		border-radius: 5px;
+	}
+	.step.present  .rotatey30{
+		padding:3px 20px;
+		transform: rotate(-30deg);
+		-webkit-transform: rotate(-30deg) ;	/* Safari 和 Chrome */
+		-moz-transform: rotate(-30deg) ;
+		display: inline-block;
+		background-color: rgba(0,0,0,0.2);
+		border-radius: 5px;
+	}
+	.step.present .mb{
+		color:#248952;
+	}
+	.big3{
+		font-size: 1.3em;
+
+	}
+	.step.present .yg{
+		color: #529845;
+	}
+	.step.present .jq{
+		color: #474415;
+	}
+	.step.present h1{
+		color:red;
+	}
+	.step.present .m1{
+		color: #FF9900;
+		-webkit-transition-delay:0.25s;
+		   -moz-transition-delay:0.25s;
+		    -ms-transition-delay:0.25s;
+		     -o-transition-delay:0.25s;
+		        transition-delay:0.25s;
+	}
+	.step.present .x1{
+		color:#FFFF00;
+		-webkit-transition-delay:0.5s;
+		   -moz-transition-delay:0.5s;
+		    -ms-transition-delay:0.5s;
+		     -o-transition-delay:0.5s;
+		        transition-delay:0.5s;
+	}
+	.step.present .c1{
+		color:#0099CC;
+		-webkit-transition-delay:0.75s;
+		   -moz-transition-delay:0.75s;
+		    -ms-transition-delay:0.75s;
+		     -o-transition-delay:0.75s;
+		        transition-delay:0.75s;
+	}
+	.step.present .z1{
+		color:#FF6666;
+		-webkit-transition-delay:1s;
+		   -moz-transition-delay:1s;
+		    -ms-transition-delay:1s;
+		     -o-transition-delay:1s;
+		        transition-delay:1s;
+	}
+	.step.present .sunshine{
+		display: inline-block;
+		width: 250px;
+		height: 250px;
+		border-radius: 100px;
+		font-weight: bolder;
+		font-size: 2em;
+		color:#FFCC00;
+		box-shadow:200px -300px 100px #FFFF33,-200px 300px 500px #CCFFFF;
+	}
+	.step.present .turn1{
+		-webkit-transform: rotateX(360deg);
+		   -moz-transform: rotateX(360deg);
+		    -ms-transform: rotateX(360deg);
+		     -o-transform: rotateX(360deg);
+		        transform: rotateX(360deg);
+	}
+	.step.present .turn2{
+		-webkit-transform: rotateX(360deg);
+		   -moz-transform: rotateX(360deg);
+		    -ms-transform: rotateX(360deg);
+		     -o-transform: rotateX(360deg);
+		        transform: rotateX(360deg);
+		-webkit-transition-delay:0.5s;
+		   -moz-transition-delay:0.5s;
+		    -ms-transition-delay:0.5s;
+		     -o-transition-delay:0.5s;
+		        transition-delay:0.5s;
+	}
+	.lgcr{
+		position: absolute;
+		width: 50%;
+		top: 20%;
+		left: 100%;
+		opacity: 0;
+		-webkit-transform: rotateX(90deg);
+		   -moz-transform: rotateX(90deg);
+		    -ms-transform: rotateX(90deg);
+		     -o-transform: rotateX(90deg);
+		        transform: rotateX(90deg);
+		        -webkit-transform-origin: 50% 100%;
+		           -moz-transform-origin: 50% 100%;
+		            -ms-transform-origin: 50% 100%;
+		             -o-transform-origin: 50% 100%;
+		                transform-origin: 50% 100%;
+		     
+		        backface-visibility:hidden;
+-webkit-backface-visibility:hidden;	/* Chrome 和 Safari */
+-moz-backface-visibility:hidden; 	/* Firefox */
+-ms-backface-visibility:hidden; 
+	}
+
+	.step.present .lgcr{
+		opacity: 0.7;
+		-webkit-transition: 0;
+		   -moz-transition: 0;
+		    -ms-transition: 0;
+		     -o-transition: 0;
+		        transition: 0;
+		
+		-webkit-transform: rotateX(0deg);
+		   -moz-transform: rotateX(0deg);
+		    -ms-transform: rotateX(0deg);
+		     -o-transform: rotateX(0deg);
+		        transform: rotateX(0deg);
+	}
+#tx1{
+	position: absolute;
+	margin: 50px auto;
+	font-size: 1em;
+	color: rgba(128,128,0,0.7);
+}
+</style>
+<body>
+	<div class="impress-not-supported">
+    </div>
+    <div id="impress">
+
+
+
+	
+
+<div class="step" data-x="-800" data-y="-600">
+	对待生活，
+	<br>
+	难免会<span class="big1">迷茫</span>。。。
+	<br>
+	难免会<span class="big1">困惑</span>。。。
+
+<div id="tx1">请使用方向键→移动</div>
+
+</div>
+
+<div class="step" data-x="0" data-y="-600" data-z="200">
+    但不要停下，不要放弃，
+	<br>
+	更不要忘记最初的
+	<br><span class="big7">梦想</span>！
+</div>
+
+<div class="step" data-x="800" data-y="-600" data-scale="0.2" style="font-size:4em">
+   也许梦想太<span class="small">渺小</span>
+</div>
+
+<div class="step" data-x="800" data-y="0" data-z="200" style="font-size:4em">
+    也许梦想太<span class="yuan">遥远</span>
+</div>
+
+<div class="step" data-x="0" data-y="0" data-scale="1.2">
+    <span class="small2">
+    但只要付诸努力坚持不懈，
+	<br>
+    <span class="big2">
+
+    <span class="m1">梦</span>
+
+    <span class="x1">想</span>
+
+    </span>总有<span class="big2">
+
+    <span class="c1">成</span>
+
+    <span class="z1">真</span>
+
+    </span>的一天
+    </span>
+</div>
+
+
+
+<div class="step" data-x="-800" data-y="0" data-rotate="90">
+    当你遇到无法解决的困难时，
+    <br>
+    不妨换一个<div class="rotatey30 big1">角度</div>思考，
+	<br>
+    也许看到的会完全不一样
+</div>
+
+ 
+<div class="step" data-x="-800" data-y="0" data-rotate="90" data-rotate-x="180">
+   亦或许，<span class="big1 turn1">反过来</span>想想，
+   <br>凡事都有<span class="big1 turn2">另一面</span>
+</div>
+
+<div class="step" data-x="-800" data-y="600" data-rotate-x="30"
+
+data-rotate-y="-60" data-rotate-z="90">
+	天再高又怎样，
+<br>
+	踮起脚尖就更接近<span class="sunshine">阳光</span>。
+</div>
+
+<div class="step" data-x="0" data-y="600" data-z="500">
+   毕竟，你必须<span class="mb big1">明白</span>
+   <br>
+	你不<span class="yg big3">勇敢</span>，没人替你<span class="jq big1">坚强</span>！
+	</div>
+
+<div class="step" data-x="800" data-y="600" data-rotate="0">
+<span style="font-size:1.5em">
+	无论何时都不要怀疑自己，
+   <br>
+   因为自信才是真正的美丽！
+
+</span>
+   <img class="lgcr" src="lgcr.png" alt="">
+</div>
+
+<div id="overview" class="step" data-x="0" data-y="0" data-scale="2"></div> 
+<!--
+<div class="step" data-x="0" data-y="-800" data-rotate="90">
+  即使失败，也不能将我们彻底打倒，
+	真正的强者，不是流泪的人，而是含泪奔跑的人。
+	
+</div>
+
+
+<div class=“step” data-x=“-2600″ data-y=“-800″ data-rotate-x=“30”
+
+data-rotate-y=“-60″ data-rotate-z=“90” data-scale=“4”>
+This is slide 7 and it has a 3D transition AND a scale.
+</div>
+
+
+
+<div class="step" data-x="-2600" data-y="-800" data-rotate-x="30" data-rotate-y="-60" data-rotate-z="90" data-scale="4">
+This is slide 7 and it has a 3D transition AND a scale.
+</div>
+ -->
+<!-- <div id="overview" class="step" data-x="-200" data-y="-800" data-scale="3"></div> -->
+
+
+　　</div>
+
+	<script src="impress.js"></script>
+　　<script>impress().init();</script>
+
+</body>
+</html>

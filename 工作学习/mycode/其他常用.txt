@@ -1,0 +1,82 @@
+<!-- 新 Bootstrap 核心 CSS 文件 -->
+<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+<!-- 可选的Bootstrap主题文件（一般不用引入） -->
+<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+<linkrel="stylesheet"href="/path/to/font-awesome/css/font-awesome.min.css">图标字体引用
+
+//文字渐变
+  -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0))); 
+
+//随机颜色RGB
+var R = Math.floor(Math.random()*255);
+			var G = Math.floor(Math.random()*255);
+			var B = Math.floor(Math.random()*255);
+			
+			ctx.fillStyle = "rgb(" + R + "," + G + "," + B + ")";
+	
+
+
+//字体声明
+@font-face {   
+	font-family: 'fontNameRegular';  
+	src: url('fontName.eot');   
+	src: local('fontName Regular'),                
+	local('fontName'),                
+	url('fontName.woff') format('woff'),               
+	url('fontName.ttf') format('truetype'),                
+	url('fontName.svg#fontName') format('svg'); } 
+
+	//圆角矩形
+	function drawRoundRectPath(x,y,r,w,h){
+		//传入起始点坐标,圆角半径,矩形宽高
+		var w = w - 2*r;
+		var h = h - 2*r;
+		ctx.beginPath();
+		ctx.arc(x,y,r,Math.PI,1.5*Math.PI);
+		ctx.lineTo(x + w,y - r);
+		ctx.arc(x + w,y,r,1.5*Math.PI,2.0*Math.PI);
+		ctx.lineTo(x + w + r,y + h);
+		ctx.arc(x + w,y + h,r,0,0.5*Math.PI);
+		ctx.lineTo(x,y + h +r);
+		ctx.arc(x,y + h,r,0.5*Math.PI,Math.PI);
+		ctx.closePath();
+	}
+
+
+
+
+	//绘制星形
+	function drawStarPath(b,x,y,R,r){
+		//需要传入边数,x.y坐标,内外圆和内圆
+
+		ctx.beginPath();
+		for(var i = 0; i < b; i ++){
+			ctx.lineTo(
+				Math.cos((90/b + i*360/b)/180 *　Math.PI) * R + x,
+				-Math.sin((90/b + i*360/b)/180 *　Math.PI) * R + y
+				)
+			ctx.lineTo(
+				Math.cos((270/b + i*360/b)/180 *　Math.PI) * r + x,
+				-Math.sin((270/b + i*360/b)/180 *　Math.PI) * r + y
+				)
+		}
+		ctx.closePath();
+	}
+
+
+		//换背景
+	function drawBg(){
+		var grd = ctx.createLinearGradient(0,0,0,500);
+		grd.addColorStop(0,"#000033");
+		grd.addColorStop(1,"#000000");
+		ctx.fillStyle = grd;
+		ctx.fillRect(0,0,can.width,can.height);
+	}

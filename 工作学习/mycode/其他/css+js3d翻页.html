@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		div{
+			margin: 0;
+			padding: 0;
+		}
+		.container{
+			width: 500px;
+			height: 400px;
+			margin: 100px auto 0 auto;
+			position: relative;
+			perspective:1000px;
+			-webkit-perspective:800;
+		}
+		.page{
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			background: black;
+			color:#fff;
+			font-size: 400px;
+			line-height: 400px;
+			text-align: center;
+			-webkit-transition: all 1s;
+			   -moz-transition: all 1s;
+			    -ms-transition: all 1s;
+			     -o-transition: all 1s;
+			        transition: all 1s;
+			-webkit-transform-origin:50% 100%;
+			   -moz-transform-origin:50% 100%;
+			    -ms-transform-origin:50% 100%;
+			     -o-transform-origin:50% 100%;
+			        transform-origin:50% 100%;
+			-webkit-transform: rotateX(90deg);
+			   -moz-transform: rotateX(90deg);
+			    -ms-transform: rotateX(90deg);
+			     -o-transform: rotateX(90deg);
+			        transform: rotateX(90deg);
+			backface-visibility:hidden;
+			-webkit-backface-visibility:hidden;	/* Chrome 和 Safari */
+			-moz-backface-visibility:hidden; 	/* Firefox */
+			-ms-backface-visibility:hidden; 
+		}
+		
+		#page0{
+			-webkit-transform: rotateX(0deg);
+			   -moz-transform: rotateX(0deg);
+			    -ms-transform: rotateX(0deg);
+			     -o-transform: rotateX(0deg);
+			        transform: rotateX(0deg);
+		}
+		#page0:hover{
+			-webkit-transform: rotateX(-90deg);
+			   -moz-transform: rotateX(-90deg);
+			    -ms-transform: rotateX(-90deg);
+			     -o-transform: rotateX(-90deg);
+			        transform: rotateX(-90deg);
+		}
+		.button{
+			width: 100px;
+			height: 100px;
+			
+		}
+
+
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div id="page9" class="page">9</div>
+		<div id="page8" class="page">8</div>
+		<div id="page7" class="page">7</div>
+		<div id="page6" class="page">6</div>
+		<div id="page5" class="page">5</div>
+		<div id="page4" class="page">4</div>
+		<div id="page3" class="page">3</div>
+		<div id="page2" class="page">2</div>
+		<div id="page1" class="page">1</div>
+		<div id="page0" class="page">0</div>
+	</div>
+	<div class="button">
+	<input type="button" value="prev" onclick="turn2()">
+	<input type="button" value="next" onclick="turn()">
+		
+	</div>
+	<script>
+
+	var cur = 0;
+	function turn(){
+		if(cur>8)
+			return;
+		var curPage = document.getElementById("page"+cur);
+		curPage.style.transform = "rotateX(-90deg)";
+		cur+=1;
+		var nextPage = document.getElementById("page"+cur);
+		nextPage.style.transform = "rotateX(0deg)";
+	}
+	function turn2(){
+		if(cur<1)
+			return;
+		var curPage = document.getElementById("page"+cur);
+		curPage.style.transform = "rotateX(90deg)";
+		cur-=1;
+		var prevPage = document.getElementById("page"+cur);
+		prevPage.style.transform = "rotateX(0deg)";
+	}
+	</script>
+</body>
+</html>

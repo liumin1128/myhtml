@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#all{
+			width: 200px;
+			height: 200px;
+			margin:100px auto;
+			perspective: 1000px;
+			-webkit-perspective: 1000px;
+			background-color: #fff;
+			border: 5px #333 solid;
+			} 
+		#cube:hover{
+			-webkit-transform: rotateY(30deg);
+			   -moz-transform: rotateY(30deg);
+			    -ms-transform: rotateY(30deg);
+			     -o-transform: rotateY(30deg);
+			        transform: rotateY(30deg);
+		}
+		#cube{
+			transform-style: preserve-3d;
+			-webkit-transform-style: preserve-3d;	
+			-webkit-transition: 0.5s;
+			   -moz-transition: 0.5s;
+			    -ms-transition: 0.5s;
+			     -o-transition: 0.5s;
+			        transition: 0.5s;
+		}
+		.plane{
+			opacity: 0.8;
+			color:#fff;
+			font-size: 200px;
+			text-align: center;
+			line-height: 200px;
+			border: 1px red solid;
+		}
+	</style>
+</head>
+<body>
+	<div id="all">
+		<div id="cube">
+			<div class="plane">0</div>
+			<div class="plane">1</div>
+			<div class="plane">2</div>
+			<div class="plane">3</div>
+			<div class="plane">4</div>
+			<div class="plane">5</div>
+		</div>
+	</div>
+		<button id="button" onclick="step0();">初始化</button>
+		<button id="button" onclick="step1();">垂直</button>
+		<button id="button" onclick="step2();">正方体</button>
+		<button id="button" onclick="step3();">拆分</button>
+	<button id="button" onclick="test();">随机转一下</button>
+	<input type="range"  min="-360" max="360" value="0" id="rotatex" onchange="rotate();">x
+	<input type="range"  min="-360" max="360" value="0" id="rotatey" onchange="rotate();">y
+	<input type="range"  min="-360" max="360" value="0" id="rotatez" onchange="rotate();">z
+	<input type="range"  min="0" max="100" value="1" id="opacity" onchange="opacity();">透明度
+	<script>
+	var cube = document.getElementById("cube");
+	var cubelength = cube.getElementsByTagName("div").length;
+	var isClick = 0;
+	window.onload = step0();
+	function step0(){
+		cube.style.transformStyle="preserve-3d";
+		for(var i=0;i<cubelength;i++){
+			var R = Math.floor(Math.random()*255);
+			var G = Math.floor(Math.random()*255);
+			var B = Math.floor(Math.random()*255);
+			var color = "rgb("+R+","+G+","+B+")";
+			var obj = cube.getElementsByTagName("div").item(i);
+			obj.style.width = "200px";
+			obj.style.height = "200px";
+			obj.style.background = color;
+			// obj.style.opacity = "0.5";
+			obj.style.position = "absolute";
+			obj.style.transition = "all 2s";
+			switch(i){
+				case 0:obj.style.transform = "rotate3d(0,0,0,90deg)";break;
+				case 1:obj.style.transform = "rotate3d(0,0,0,180deg)";break;
+				case 2:obj.style.transform = "rotate3d(0,0,0,90deg)";break;
+				case 3:obj.style.transform = "rotate3d(0,0,0,-90deg)";break;
+				case 4:obj.style.transform = "rotate3d(0,0,0,0deg)";break;
+				case 5:obj.style.transform = "rotate3d(0,0,0,-90deg)";break;
+					}
+		}
+	}
+		function step1(){
+			for(var i=0;i<cubelength;i++){
+				var obj = cube.getElementsByTagName("div").item(i);
+				switch(i){
+				case 0:obj.style.transform = "rotate3d(0,1,0,90deg)";break;
+				case 1:obj.style.transform = "rotate3d(0,1,0,-90deg)";break;
+				case 2:obj.style.transform = "rotate3d(1,0,0,90deg)";break;
+				case 3:obj.style.transform = "rotate3d(1,0,0,-90deg)";break;
+				case 4:obj.style.transform = "rotate3d(0,0,0,0deg)";break;
+				case 5:obj.style.transform = "rotate3d(1,0,0,180deg)";break;
+					}
+				}
+			}
+		function step2(){
+			for(var i=0;i<cubelength;i++){
+				var obj = cube.getElementsByTagName("div").item(i);
+				switch(i){
+				case 0:obj.style.transform = "rotate3d(0,1,0,90deg) translateZ(100px)";break;
+				case 1:obj.style.transform = "rotate3d(0,1,0,-90deg) translateZ(100px)";break;
+				case 2:obj.style.transform = "rotate3d(1,0,0,90deg) translateZ(100px)";break;
+				case 3:obj.style.transform = "rotate3d(1,0,0,-90deg) translateZ(100px)";break;
+				case 4:obj.style.transform = "rotate3d(1,0,0,0deg) translateZ(100px)";break;
+				case 5:obj.style.transform = "rotate3d(1,0,0,180deg) translateZ(100px)";break;
+					}
+				}
+				// cube.style.transform = "translateZ(-100px)";
+		}
+		function step3(){
+			for(var i=0;i<cubelength;i++){
+				var obj = cube.getElementsByTagName("div").item(i);
+				switch(i){
+				case 0:obj.style.transform = "rotate3d(0,1,0,90deg) translateZ(200px)";break;
+				case 1:obj.style.transform = "rotate3d(0,1,0,-90deg) translateZ(200px)";break;
+				case 2:obj.style.transform = "rotate3d(1,0,0,90deg) translateZ(200px)";break;
+				case 3:obj.style.transform = "rotate3d(1,0,0,-90deg) translateZ(200px)";break;
+				case 4:obj.style.transform = "rotate3d(0,0,0,0deg) translateZ(200px)";break;
+				case 5:obj.style.transform = "rotate3d(1,0,0,180deg) translateZ(200px)";break;
+					}
+				}
+				// cube.style.transform = "translateZ(-100px)";
+
+		}
+		all.onmousedown = function(){
+			isClick = 1;
+		}
+		all.onmouseup = function(){
+			isClick = 0;
+		}
+		all.onmousemove = function(e){
+        	e.preventDefault();
+        	var point = windowToCanvas(e.clientX,e.clientY);
+        	if(isClick==1){
+        	}
+   	 	}
+   	 	function windowToCanvas(x,y){
+        	var bbox = all.getBoundingClientRect();
+        	return{
+            	x:x-bbox.left,
+            	y:y-bbox.top
+        	}
+    	}
+    	function test(){
+    		var x = Math.random();
+    		var y = Math.random();
+    		var z = Math.random();
+    		cube.style.transform = "rotate3d("+x+","+y+","+x+",180deg)";
+    	}
+    	var rotatex = document.getElementById("rotatex");
+		var rotatey = document.getElementById("rotatey");
+		var rotatez = document.getElementById("rotatez");
+		function rotate(){
+		cube.style.transform = "rotateX("+rotatex.value+"deg) rotateY("+rotatey.value+"deg) rotateZ("+rotatez.value+"deg) translateZ(-100px)";
+		}
+		function opacity(){
+			var opacity = document.getElementById("opacity");
+			for(var i=0;i<cubelength;i++){
+				var obj = cube.getElementsByTagName("div").item(i);
+				obj.style.opacity = opacity.value/100;
+			}
+		}
+	</script>
+</body>
+</html>

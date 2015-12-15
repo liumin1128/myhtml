@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+	body{
+		background-color: #000;
+	}
+	#canvas{
+		box-shadow: 1px 1px 3px #333;
+		margin: 20px auto;
+		display: block;
+	}
+	.input{
+		display: block;
+		margin: 20px auto;
+
+	}
+
+</style>
+<body>
+	<canvas id="canvas">
+		你的浏览器不支持canvas
+	</canvas>
+
+	<input type="range" id="scale-range" min="0.5" max="3" step="0.01" value="1.0" class="input">
+
+	<canvas id="watermarke" style="display:none;">
+		这是水印
+	</canvas>
+	<script>
+	var can = document.getElementById("canvas");
+	var ctx = can.getContext("2d");
+	var slider = document.getElementById("scale-range");
+	var img = new Image();
+
+	var wmcan = document.getElementById("watermarke");
+	var wmctx = wmcan.getContext("2d");
+	window.onload = init();
+	function init(){
+		can.width = 460;
+		can.height = 690;
+		drawBg();
+		drawImage();
+		drawWaterMarke();
+		slider.onmousemove = function(){
+				scale = slider.value;
+				drawImage();
+				drawWaterMarke();
+			
+			}
+	}
+	function drawBg(){
+		ctx.fillStyle = "#393550";
+		ctx.fillRect(0,0,can.width,can.height);
+	}
+	function drawImage(){
+		img.src = "img.jpg";
+		var scale = slider.value;
+		img.onload = function(){
+			// ctx.drawImage(img,0,0,can.width,can.height);
+			
+			drawImageByScale(scale,img);
+		}
+
+	}
+	function drawImageByScale(scale,img){
+
+		var imgWidth = 460 * scale;
+		var imgHeight = 690 * scale;
+		var imgX = 460*(1-scale)*0.5;
+		var imgY = 690*(1-scale)*0.5;
+		ctx.clearRect(0,0,can.width,can.height);
+		drawBg();
+		ctx.drawImage(img,imgX,imgY,imgWidth,imgHeight);
+		ctx.drawImage(wmcan,350,650);
+	}
+	function drawWaterMarke(){
+		wmcan.width = 200;
+		wmcan.height = 60;
+		wmctx.font = "30px consola";
+    	//设置字体颜色
+    	wmctx.strokeStyle = "rgba(255,255,255,0.5)";
+    	//从坐标点(50,50)开始绘制文字
+    	wmctx.strokeText("liumin", 0, 20);
+	}
+	</script>
+</body>
+</html>

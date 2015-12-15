@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<canvas id="canvas">
+		我去,你的浏览器不支持canvas绘图!
+	</canvas>
+	<script type="text/javascript">
+	var can;
+	var ctx;
+	window.onload = init();
+	function init(){
+		can = document.getElementById("canvas");
+		ctx = can.getContext("2d");
+		can.width = 1024;
+		can.height = 768;
+		ctx.fillStyle = "#393550";
+		ctx.fillRect(0,0,100,100);
+
+		
+
+		drawStarPath(5,300,400,200,100);
+
+		ctx.lineWidth = 10;
+		ctx.strokeStyle = "red"
+		ctx.stroke();
+
+	
+		
+		drawRoundRectPath(200,200,10,500,300); 
+
+
+		ctx.lineWidth = 10;
+		ctx.strokeStyle = "red"
+		ctx.stroke();
+	}
+
+	//圆角矩形
+	function drawRoundRectPath(x,y,r,w,h){
+		//传入起始点坐标,圆角半径,矩形宽高
+		var w = w - 2*r;
+		var h = h - 2*r;
+		ctx.beginPath();
+		ctx.arc(x,y,r,Math.PI,1.5*Math.PI);
+		ctx.lineTo(x + w,y - r);
+		ctx.arc(x + w,y,r,1.5*Math.PI,2.0*Math.PI);
+		ctx.lineTo(x + w + r,y + h);
+		ctx.arc(x + w,y + h,r,0,0.5*Math.PI);
+		ctx.lineTo(x,y + h +r);
+		ctx.arc(x,y + h,r,0.5*Math.PI,Math.PI);
+		ctx.closePath();
+	}
+
+
+
+
+	//绘制星形
+	function drawStarPath(b,x,y,R,r){//需要传入边数,x.y坐标,内外圆和内圆
+
+		ctx.beginPath();
+		for(var i = 0; i < b; i ++){
+			ctx.lineTo(
+				Math.cos((90/b + i*360/b)/180 *　Math.PI) * R + x,
+				-Math.sin((90/b + i*360/b)/180 *　Math.PI) * R + y
+				)
+			ctx.lineTo(
+				Math.cos((270/b + i*360/b)/180 *　Math.PI) * r + x,
+				-Math.sin((270/b + i*360/b)/180 *　Math.PI) * r + y
+				)
+		}
+		ctx.closePath();
+	}
+
+
+
+
+	//绘制圆弧
+	function drawArc(){
+
+		var c=document.getElementById("canvas");
+		var ctx=can.getContext("2d");
+		ctx.beginPath();
+		ctx.arc(100,75,50,0,2*Math.PI);
+		ctx.stroke();
+
+	}
+
+	//三次贝塞尔曲线
+	function drawBezier(){
+
+			//context.bezierCurveTo(cp1x,cp1y,cp2x,cp2y,x,y);
+			//http://blogs.sitepointstatic.com/examples/tech/canvas-curves/bezier-curve.html
+
+			ctx.lineWidth = 6;
+			ctx.strokeStyle = "#333";
+			ctx.beginPath();
+			ctx.moveTo(277, 235);
+			ctx.bezierCurveTo(192, 55, 402, 351, 386, 159);
+			ctx.stroke();
+	
+
+	}
+
+	//二次贝塞尔曲线
+	function drawBezier2(){
+
+		//context.quadraticCurveTo(cpx,cpy,x,y);
+
+		var can=document.getElementById("canvas");
+		var ctx=can.getContext("2d");
+		ctx.beginPath();
+		ctx.moveTo(20,20);
+		ctx.quadraticCurveTo(20,100,200,20);
+		ctx.stroke();
+	}
+
+
+	</script>
+</body>
+</html>

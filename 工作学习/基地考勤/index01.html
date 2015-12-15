@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>index01.html</title>
+<script src="js/jquery-2.1.3.min.js"></script>
+<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+<meta http-equiv="description" content="this is my page">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+<!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+
+</head>
+<script type="text/javascript">
+	function jsonClick() {
+		var xmlhttp;
+		if (window.XMLHttpRequest) {
+			xmlhttp = new XMLHttpRequest();
+		} else {
+			alert("Microsoft.XMLHTTP");
+			xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+
+		}
+		//$('#province').ajaxFrom();
+		xmlhttp.open("POST", "test01.action", false);
+		xmlhttp.setRequestHeader("Content-type",
+				"application/x-www-form-urlencoded");
+		xmlhttp.send();
+		var obj1 = xmlhttp.responseText;
+		var obj = eval("(" + xmlhttp.responseText + ")");
+
+		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+			document.getElementById("response").innerHTML = obj1;
+			document.getElementById("cities").innerHTML = "<font color='red'>"
+					+ obj.cities + "</font>";
+			document.getElementById("ln").innerHTML = "<font color='red'>"
+					+ obj.myProvinces['辽宁'] + "</font>";
+			document.getElementById("hlj").innerHTML = "<font color='red'>"
+					+ obj.myProvinces['黑龙江'] + "</font>";
+			document.getElementById("gd").innerHTML = "<font color='red'>"
+					+ obj.myProvinces['广东'] + "</font>";
+		}
+
+	}
+</script>
+
+<body>
+	<form id="form1" name="form1" method="post">
+		请输入省名: <input type="text" name="province" id="province"
+			style="width:100px" /> <label id="cities"> </label>
+		<p />
+		辽宁:<label id="ln"></label><br> 黑龙江:<label id="hlj"></label><br>
+		广东:<label id="gd"></label><br>
+		<p />
+		<input type="button" value="提交" onclick="jsonClick();" /> <label
+			id="response"></label>
+	</form>
+
+	<form id="form2" name="form2" action="test01.action" method="post">
+		请输入省名: <input type="text" name="province" id="province"
+			style="width:100px" /><br /> <input type="submit" value="提交"  />
+		<label id="response"></label>
+	</form>
+</body>
+
+</html>

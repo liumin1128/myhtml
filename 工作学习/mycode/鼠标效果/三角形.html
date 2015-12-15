@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+    <script>
+    var can = document.getElementById("canvas");
+    var ctx = can.getContext("2d");
+    balls = [];
+    var gy = 0;
+    var gx = 0;
+    var PI = Math.PI;
+     window.requestAnimFrame = (function(){
+        return  window.requestAnimationFrame       ||
+          window.webkitRequestAnimationFrame ||
+          window.mozRequestAnimationFrame    ||
+          function( callback ){
+            window.setTimeout(callback, 1000 / 60);
+          };
+    })();
+    window.onload = init();
+    function init(e){
+
+        // 获取窗口宽度
+        if (window.innerWidth)
+        winWidth = window.innerWidth;
+        else if ((document.body) && (document.body.clientWidth))
+        winWidth = document.body.clientWidth;
+        // 获取窗口高度
+        if (window.innerHeight)
+        winHeight = window.innerHeight;
+        else if ((document.body) && (document.body.clientHeight))
+        winHeight = document.body.clientHeight;
+        can.width = winWidth;
+        can.height = winHeight;
+        can.style.backgroundColor = "rgb(0,0,0)";
+        // ctx.arc(100,100,100,0,2*PI);
+        // ctx.fillRect(0,0,can.width,can.height);
+        // creatBalls();
+        // drawBall();
+        // drawShadow();
+        // creatBalls(point);
+         
+        loop();
+    }
+    can.onmousemove = function(e){
+        // alert();
+        e.preventDefault();
+        var point = windowToCanvas(e.clientX,e.clientY);
+        // console.log(point.x,point.y);
+        gy = (point.y-can.height/2)/2000;
+        gx = (point.x-can.width/2)/2000;
+
+        creatBalls(point);
+        // drawBall();
+        // drawShadow();
+
+    }
+    can.onclick = function(){
+        if(can.style.backgroundColor=="rgb(0, 0, 0)"){
+            can.style.backgroundColor = "rgb(255,255,255)";
+        }else{
+            can.style.backgroundColor = "rgb(0,0,0)";
+        }
+
+    }
+
+   
+    function loop(){
+        var point = windowToCanvas(can.width/2,can.height/2);
+        console.log(point.x,point.y);
+        creatBalls(point);
+        window.requestAnimFrame(loop);
+            creatBalls(point);
+            updateBalls();
+            drawBall();
+            
+            // drawShadow();
+    }
+    function updateBalls(){
+        if (balls.length==0){
+           return;
+        }
+        for(i=0;i<balls.length;i++){
+            // console.log(balls[i].x);
+            balls[i].x+=balls[i].vx;
+            balls[i].y+=balls[i].vy;
+            balls[i].vx+=gx;
+            balls[i].vy+=gy;
+            balls[i].time+=1;
+            if(balls[i].time>=300){
+                balls.shift();
+            }
+            // balls[i].radius
+            // if(balls[i].x<=-1000||balls[i].y>=1000){
+            //     // balls.splice(200);
+            //     balls.shift();
+            // }
+        }
+
+    }
+    function windowToCanvas(x,y){
+        var bbox = canvas.getBoundingClientRect();
+        return{
+            x:x-bbox.left,
+            y:y-bbox.top
+        }
+    }
+    function creatBalls(point){
+            var R = Math.floor(Math.random()*255);
+            var G = Math.floor(Math.random()*255);
+            var B = Math.floor(Math.random()*255);
+            var A = Math.random()*0.5+0.5;
+            var radius = Math.floor(Math.random()*30);
+            //  if(i%2==0){
+            //     A = 1;
+            // }else{
+            //     radius+=5;
+            // }
+            ball = {
+                color:"rgba("+R+","+G+","+B+","+A+")",
+                radius:radius,
+                x:point.x,
+                y:point.y,
+                vx:Math.random()*10 - 5,
+                vy:Math.random()*2 - 1,
+                time:0
+            };
+            var b = balls.length;
+            // console.log(b);
+            balls[b] = ball;
+            // console.log(balls[b].color);
+
+            console.log(balls.length);
+
+        
+    }
+    function drawBall(){
+        if (balls.length==0){
+           return;
+        }
+        ctx.clearRect(0,0,can.width,can.height);
+        ctx.save();
+        //ctx.globalAlpha = 1;
+        for(i=0;i<balls.length-1;i++){
+            // ctx.globalCompositeOperation="lighter";
+            // ctx.shadowColor = balls[i].color;
+            // ctx.shadowOffsetX = 1;
+            // ctx.shadowOffsetY = 1;
+            // ctx.shadowBlur = 1;
+            ctx.fillStyle = balls[i].color;
+            ctx.beginPath();
+            // ctx.arc(balls[i].x,balls[i].y,balls[i].radius,0,PI*2);
+            ctx.moveTo(balls[i].x,balls[i].y-balls[i].radius);
+            ctx.lineTo(balls[i].x+Math.sqrt(3)*balls[i].radius/2,balls[i].y+balls[i].radius/2);
+            ctx.lineTo(balls[i].x-Math.sqrt(3)*balls[i].radius/2,balls[i].y+balls[i].radius/2);
+            ctx.closePath();
+            ctx.fill();
+        }
+        ctx.restore();
+    }
+  
+    function drawShadow(){
+        for(i=0;i<balls.length;i++){
+            ctx.globalCompositeOperation="lighter";//youxiao
+            ctx.shadowColor = balls[i].color;
+            ctx.shadowOffsetX = 0;
+            ctx.shadowOffsetY = 0;
+            ctx.shadowBlur = (1-balls[i].radius/20)*5;
+            ctx.fillStyle = "rgab(0,0,0,0)";
+            ctx.beginPath();
+            ctx.arc(balls[i].x,balls[i].y,balls[i].radius,0,PI*2);
+            ctx.closePath();
+            ctx.fill();
+        }
+        // alert();
+    }
+   
+    
+    
+    </script>
+</body>
+</html>

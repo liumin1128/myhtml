@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+	*{
+	margin: 0;
+	padding: 0;
+	border: 0;
+	}
+	.container{
+		width: 800px;
+		margin: 0 auto;
+	}
+	.pics{
+		width: 100%;
+		position: relative;
+		height: 500px;
+	}
+	.pic{
+		width: 100%;
+		position: absolute;
+		opacity:0;
+	}
+	#pic0{
+		opacity: 1;
+	}
+	.pic img{
+		width: 100%;
+		height: 500px;
+	}
+	.button{
+	}
+</style>
+<body>
+	<div class="container">
+		<div class="pics">
+			<div id="pic0" class="pic"><img src="img/0.jpg" alt=""></div>
+			<div id="pic1" class="pic"><img src="img/1.jpg" alt=""></div>
+			<div id="pic2" class="pic"><img src="img/2.jpg" alt=""></div>
+			<div id="pic3" class="pic"><img src="img/3.jpg" alt=""></div>
+			<div id="pic4" class="pic"><img src="img/4.jpg" alt=""></div>
+			<div id="pic5" class="pic"><img src="img/5.jpg" alt=""></div>
+			<div id="pic6" class="pic"><img src="img/6.jpg" alt=""></div>
+			<div id="pic7" class="pic"><img src="img/7.jpg" alt=""></div>
+			<div id="pic8" class="pic"><img src="img/8.jpg" alt=""></div>
+			<div id="pic9" class="pic"><img src="img/9.jpg" alt=""></div>
+		</div>
+		<div class="button">111
+			<input type="button" value="prev" onclick="prev()">
+			<input type="button" value="next" onclick="next()">
+
+		</div>
+	</div>
+	<script>
+		var cur = 0;
+		function curCheck(cur){
+			if(cur<0){
+				cur = 9;
+			}else if(cur>9){
+				cur = 0;
+			}
+			return cur;
+		}
+		function next(){
+			turn(cur,curCheck(cur+1));
+			cur = curCheck(cur+1);
+		}
+		function prev(){
+			turn(cur,curCheck(cur-1));
+			cur = curCheck(cur-1);
+		}
+		function turn(source,obj){
+			var sourcePage = document.getElementById("pic" + source);
+			var objPage = document.getElementById("pic" + obj);
+			sourcePage.style.opacity = "0";
+			objPage.style.opacity = "1";
+		}
+	</script>
+</body>
+</html>

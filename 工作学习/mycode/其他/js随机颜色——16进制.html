@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+<script>
+function getc1(){
+	var arr=[];
+	 i=0;
+	 C='0123456789ABCDEF';
+	
+	while(i++<6){
+	 x=Math.random()*16;
+	 b=parseInt(x);	
+	 c=C.substr(b,1);
+	 arr.push(c);
+	 
+	}
+	
+	var c1="#"+arr.join('');
+	return c1;
+	
+	
+}
+
+window.setInterval(setColor,1000);
+function setColor(){
+	var color=getc1();
+	document.getElementById("input").value=color;
+	document.getElementById("div").style.background=color;
+	
+}
+</script>
+<style>
+#div{
+	transition:1s;
+width:500px;
+height:500px;	
+}
+</style>
+
+<body>
+<div id="div"></div>
+<input type="text" id="input">
+</body>
+</html>

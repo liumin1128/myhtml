@@ -1,0 +1,36 @@
+/* LESS Document*/
+/*LESS Document*/
+@charset "utf-8";
+/* CSS Document */
+/*
+Theme Name: xuanfeng
+Date:2013/10/01;
+Version:2.0;
+*/
+.logo {
+  font-size: 5em;
+  display: block;
+}
+.headbg {
+  width: 100%;
+  background: url(../image/sky.jpg);
+  height: 750px;
+}
+.main-header {
+  color: #fff;
+}
+.main-header a {
+  color: #fff;
+  margin-top: 100%;
+  margin-left: 200%;
+  list-style: none;
+  text-decoration: none;
+}
+.main-header span {
+  top: 0.2em;
+}
+#span {
+  width: 100px;
+  height: 100px;
+  background: red;
+}

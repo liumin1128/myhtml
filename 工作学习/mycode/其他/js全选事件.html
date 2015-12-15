@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+<script>
+	document.write("<ul>");
+	for(var i=0;i<20;i++){
+		document.write("<li>");
+		document.write('<input type="checkbox" name="ids[]" value="'+i+'">这是选择框');
+		document.write("</li>");
+	}
+	document.write("</ul>");
+	document.write('<label for="one"><input id="one" type="checkbox" onclick="sall(this)">全选</label>');
+	var cnames=document.getElementsByName("ids[]");
+	function sall(obj){
+		for(var i=0;i<cnames.length;i++)
+		   cnames[i].checked=obj.checked;
+	}
+
+
+
+
+
+
+</script>
+</body>
+</html>

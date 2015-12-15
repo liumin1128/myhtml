@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="css/init.css">
+	<link rel="stylesheet" type="text/css" href="css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css"></head>
+	<style type="text/css">
+	body{
+	background: #393550;
+}
+html,body{
+	width: 100%;
+	height:100%;
+	position: relative;
+}
+div,img,ul,li{
+	margin: 0;
+	padding: 0;
+}
+.body{
+	width:600px;
+	margin:0 auto 0 auto;
+		position: relative;
+	
+}
+.demo{
+	width: 100%;
+	position: relative;
+	height: 420px;
+	overflow: hidden;
+/*	background: red;*/
+
+	
+
+}
+
+.image{
+
+	width: 800%;
+	position: absolute;
+	float: left;
+
+	
+}
+.image:nth-child(3) li{
+	opacity: 1;
+}
+.image li{
+	width: 12.5%;
+	margin: 0;
+	padding: 0;
+	float: left;
+	opacity: 0;
+	position: absolute;
+	transition:1s;
+	transiform:scale(1.2,1.2);
+}
+.crtl ul{
+	position: relative;
+	top: -40px;
+	left: 50%;
+	transform:translateX(-50%);
+	height: 20px;
+	float: left;
+	
+}
+.crtl li{
+
+	width: 20px;
+	height: 20px;
+	float: left;
+	background: rgba(0,0,0,0.5);
+	border-radius: 100%;
+	color: #fff;
+	text-align: center;
+	line-height: 20px;
+	transition:0.5s;
+}
+.crtl li:hover{
+	background: rgba(255,0,0,0.5);
+}
+.trangle1{
+	width: 100px;
+	height: 50px;
+	padding: 0;
+	color: #fff;
+	font-size: 20px;
+	text-align: center;
+	position: relative;
+	top: -260px;
+	z-index: 999;
+	opacity: 0;
+	transition:0.5s;
+}
+.demo:hover~h1{
+	opacity: 1;
+}
+.trangle1:after{
+	z-index: -1;
+	position: absolute;
+	left: -65px;
+	top:-15px;
+	content:"";
+	width: 0;
+	height: 0;
+	border: 60px rgba(0,0,0,0.5) solid;
+	border-width: 40px 70px 40px 70px;
+	/*border-width: 0 30px 0 0;*/
+	border-color: rgba(0,0,0,0)  rgba(0,0,0,0.5) rgba(0,0,0,0) rgba(0,0,0,0);
+}
+.trangle2{
+	width: 100px;
+	height: 50px;
+	padding: 0;
+	color: #fff;
+	font-size: 20px;
+	text-align: center;
+	position: relative;
+	top: -320px;
+	left: 500px;
+	z-index: 999;
+	opacity: 0;
+	transition:0.5s;
+}
+h1:hover{
+	opacity: 1;
+
+}
+.trangle2:after{
+	z-index: -1;
+	position: absolute;
+	left: 23px;
+	top:-20px;
+	content:"";
+	width: 0;
+	height: 0;
+	border: 60px rgba(0,0,0,0.5) solid;
+	border-width: 40px 70px 40px 70px;
+	/*border-width: 0 30px 0 0;*/
+	border-color: rgba(0,0,0,0)  rgba(0,0,0,0) rgba(0,0,0,0) rgba(0,0,0,0.5);
+}
+
+
+</style>
+<body>
+	<div class="body">
+		<div class="demo" onMouseOver="run=window.clearInterval(run)" onMouseOut="run=window.setInterval(runpic,5000)">
+			<ul class="image" id="demo" >
+				<li id="pic1">
+					<img src="image/1.jpg"></li>
+				<li id="pic2">
+					<img src="image/2.jpg"></li>
+				<li id="pic3">
+					<img src="image/3.jpg"></li>
+				<li id="pic4">
+					<img src="image/4.jpg"></li>
+				<li id="pic5">
+					<img src="image/5.jpg"></li>
+				<li id="pic6">
+					<img src="image/6.jpg"></li>
+				<li id="pic7">
+					<img src="image/7.jpg"></li>
+				<li id="pic8">
+					<img src="image/8.jpg"></li>
+			</ul>
+		</div>
+		<div class="crtl" onMouseOver="run=window.clearInterval(run)" onMouseOut="run=window.setInterval(runpic,5000)">
+			<ul>
+				<li onMouseOver="turn(1)">1</li>
+				<li onMouseOver="turn(2)">2</li>
+				<li onMouseOver="turn(3)">3</li>
+				<li onMouseOver="turn(4)">4</li>
+				<li onMouseOver="turn(5)">5</li>
+				<li onMouseOver="turn(6)">6</li>
+				<li onMouseOver="turn(7)">7</li>
+				<li onMouseOver="turn(8)">8</li>
+			</ul>
+		</div>
+
+		<h1 class="trangle1" onclick="runpic2()" onMouseOver="run=window.clearInterval(run)" onMouseOut="run=window.setInterval(runpic,5000)">left</h1>
+		<h1 class="trangle2" onclick="runpic()" onMouseOver="run=window.clearInterval(run)" onMouseOut="run=window.setInterval(runpic,5000)">right</h1>
+
+		<script type="text/javascript">
+			var run = window.setInterval(runpic,5000);
+			var picvalue = 0;
+			var pic1 = document.getElementById("pic1");
+			var pic2 = document.getElementById("pic2");
+			var pic3 = document.getElementById("pic3");
+			var pic4 = document.getElementById("pic4");
+			var pic5 = document.getElementById("pic5");
+			var pic6 = document.getElementById("pic6");
+			var pic7 = document.getElementById("pic7");
+			var pic8 = document.getElementById("pic8");
+			pic1.style.opacity = Math.floor(((picvalue+8)%9)/8);
+	function runpic(){
+		picvalue += 1;
+		if(picvalue==9){
+			picvalue = 1;
+		}
+		pic1.style.opacity = Math.floor(((picvalue+7)%9)/8);
+		pic2.style.opacity = Math.floor(((picvalue+6)%9)/8);
+		pic3.style.opacity = Math.floor(((picvalue+5)%9)/8);
+		pic4.style.opacity = Math.floor(((picvalue+4)%9)/8);
+		pic5.style.opacity = Math.floor(((picvalue+3)%9)/8);
+		pic6.style.opacity = Math.floor(((picvalue+2)%9)/8);
+		pic7.style.opacity = Math.floor(((picvalue+1)%9)/8);
+		pic8.style.opacity = Math.floor(((picvalue+0)%9)/8);
+		pic1.style.transform = "scale("+(1.2-Math.floor(((picvalue+7)%9)/8)*0.2) +","+(1.2-Math.floor(((picvalue+7)%9)/8)*0.2)+")";
+		pic2.style.transform = "scale("+(1.2-Math.floor(((picvalue+6)%9)/8)*0.2) +","+(1.2-Math.floor(((picvalue+6)%9)/8)*0.2)+")";
+		pic3.style.transform = "scale("+(1.2-Math.floor(((picvalue+5)%9)/8)*0.2) +","+(1.2-Math.floor(((picvalue+5)%9)/8)*0.2)+")";
+		pic4.style.transform = "scale("+(1.2-Math.floor(((picvalue+4)%9)/8)*0.2) +","+(1.2-Math.floor(((picvalue+4)%9)/8)*0.2)+")";
+		pic5.style.transform = "scale("+(1.2-Math.floor(((picvalue+3)%9)/8)*0.2) +","+(1.2-Math.floor(((picvalue+3)%9)/8)*0.2)+")";
+		pic6.style.transform = "scale("+(1.2-Math.floor(((picvalue+2)%9)/8)*0.2) +","+(1.2-Math.floor(((picvalue+2)%9)/8)*0.2)+")";
+		pic7.style.transform = "scale("+(1.2-Math.floor(((picvalue+1)%9)/8)*0.2) +","+(1.2-Math.floor(((picvalue+1)%9)/8)*0.2)+")";
+		pic8.style.transform = "scale("+(1.2-Math.floor(((picvalue+0)%9)/8)*0.2) +","+(1.2-Math.floor(((picvalue+0)%9)/8)*0.2)+")";
+	pic8.style.transitionDelay=1.5*Math.floor(((picvalue+7)%9)/8)+"s";
+	pic1.style.transitionDelay=1.5*Math.floor(((picvalue+6)%9)/8)+"s";
+	pic2.style.transitionDelay=1.5*Math.floor(((picvalue+5)%9)/8)+"s";
+	pic3.style.transitionDelay=1.5*Math.floor(((picvalue+4)%9)/8)+"s";
+	pic4.style.transitionDelay=1.5*Math.floor(((picvalue+3)%9)/8)+"s";
+	pic5.style.transitionDelay=1.5*Math.floor(((picvalue+2)%9)/8)+"s";
+	pic6.style.transitionDelay=1.5*Math.floor(((picvalue+1)%9)/8)+"s";
+	pic7.style.transitionDelay=1.5*Math.floor(((picvalue+0)%9)/8)+"s";
+	}
+		function turn(n){
+			picvalue = 0;
+			picvalue += n-1;
+			runpic();
+		}
+		function runpic2(){
+			picvalue -= 2;
+			if(picvalue<0){
+				picvalue = 7;
+			}
+			runpic()
+		}
+			
+			
+		
+			
+			
+		</script></div>
+</body>
+</html>
